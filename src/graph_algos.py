@@ -1,0 +1,181 @@
+import heapq
+
+class Graph:
+    def __init__(self):
+        self.adj_list = {}
+
+    def add_edge(self, u, v, weight=1):
+        if u not in self.adj_list:
+            self.adj_list[u] = []
+        if v not in self.adj_list:
+            self.adj_list[v] = []
+        self.adj_list[u].append((v, weight))
+        # self.adj_list[v].append((u, weight)) # Directed graph for now
+
+    def bfs(self, start_node):
+        if start_node not in self.adj_list:
+            return []
+        
+        visited = set()
+        queue = [start_node]
+        visited.add(start_node)
+        traversal = []
+        
+        while len(queue) > 0:
+            current = queue.pop(0)
+            traversal.append(current)
+            
+            for neighbor, weight in self.adj_list.get(current, []):
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
+        return traversal
+
+    def dfs(self, start_node):
+        if start_node not in self.adj_list:
+            return []
+        
+        visited = set()
+        stack = [start_node]
+        traversal = []
+        
+        while len(stack) > 0:
+            current = stack.pop()
+            if current not in visited:
+                visited.add(current)
+                traversal.append(current)
+                
+                # Add neighbors to stack in reverse order to visit in order
+                neighbors = self.adj_list.get(current, [])
+                for i in range(len(neighbors) - 1, -1, -1):
+                    neighbor, weight = neighbors[i]
+                    if neighbor not in visited:
+                        stack.append(neighbor)
+        return traversal
+
+    def dijkstra(self, start_node):
+        if start_node not in self.adj_list:
+            return {}
+        
+        distances = {node: float('infinity') for node in self.adj_list}
+        distances[start_node] = 0
+        pq = [(0, start_node)]
+        
+        while len(pq) > 0:
+            current_dist, current_node = heapq.heappop(pq)
+            
+            if current_dist > distances[current_node]:
+                continue
+            
+            for neighbor, weight in self.adj_list.get(current_node, []):
+                distance = current_dist + weight
+                if distance < distances.get(neighbor, float('infinity')):
+                    distances[neighbor] = distance
+                    heapq.heappush(pq, (distance, neighbor))
+        return distances
+
+    def bellman_ford(self, start_node):
+        # Get all nodes
+        nodes = list(self.adj_list.keys())
+        distances = {node: float('infinity') for node in nodes}
+        distances[start_node] = 0
+        
+        # Relax edges |V| - 1 times
+        for _ in range(len(nodes) - 1):
+            for u in self.adj_list:
+                for v, weight in self.adj_list[u]:
+                    if distances[u] != float('infinity') and distances[u] + weight < distances.get(v, float('infinity')):
+                        distances[v] = distances[u] + weight
+                        
+        # Check for negative weight cycles
+        for u in self.adj_list:
+            for v, weight in self.adj_list[u]:
+                if distances[u] != float('infinity') and distances[u] + weight < distances.get(v, float('infinity')):
+                    return None # Negative cycle detected
+                    
+        return distances
+
+    def floyd_warshall(self):
+        nodes = list(self.adj_list.keys())
+        dist = {u: {v: float('infinity') for v in nodes} for u in nodes}
+        
+        for u in nodes:
+            dist[u][u] = 0
+            for v, weight in self.adj_list[u]:
+                dist[u][v] = weight
+                
+        for k in nodes:
+            for i in nodes:
+                for j in nodes:
+                    if dist[i][k] + dist[k][j] < dist[i][j]:
+                        dist[i][j] = dist[i][k] + dist[k][j]
+        return dist
+
+    def topological_sort(self):
+        """Performs topological sort on a DAG."""
+        in_degree = {u: 0 for u in self.adj_list}
+        for u in self.adj_list:
+            for v, weight in self.adj_list[u]:
+                in_degree[v] = in_degree.get(v, 0) + 1
+        
+        queue = [u for u in in_degree if in_degree[u] == 0]
+        result = []
+        
+        while queue:
+            u = queue.pop(0)
+            result.append(u)
+            
+            for v, weight in self.adj_list.get(u, []):
+                in_degree[v] -= 1
+                if in_degree[v] == 0:
+                    queue.append(v)
+                    
+        if len(result) != len(self.adj_list):
+            return None # Cycle detected
+        return result
+
+class UnionFind:
+    def __init__(self, elements):
+        self.parent = {e: e for e in elements}
+        self.rank = {e: 0 for e in elements}
+
+    def find(self, item):
+        if self.parent[item] != item:
+            self.parent[item] = self.find(self.parent[item])
+        return self.parent[item]
+
+    def union(self, item1, item2):
+        root1 = self.find(item1)
+        root2 = self.find(item2)
+        
+        if root1 != root2:
+            if self.rank[root1] > self.rank[root2]:
+                self.parent[root2] = root1
+            elif self.rank[root1] < self.rank[root2]:
+                self.parent[root1] = root2
+            else:
+                self.parent[root2] = root1
+                self.rank[root1] += 1
+            return True
+        return False
+
+def kruskal_mst(graph):
+    """Finds Minimum Spanning Tree using Kruskal's algorithm."""
+    edges = []
+    for u in graph.adj_list:
+        for v, weight in graph.adj_list[u]:
+            # Avoid duplicate edges for undirected graph assumption
+            edges.append((weight, u, v))
+            
+    edges.sort()
+    
+    uf = UnionFind(graph.adj_list.keys())
+    mst = []
+    total_weight = 0
+    
+    for weight, u, v in edges:
+        if uf.union(u, v):
+            mst.append((u, v, weight))
+            total_weight += weight
+            
+    return mst, total_weight

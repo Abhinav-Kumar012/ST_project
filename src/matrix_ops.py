@@ -1,0 +1,176 @@
+
+def matrix_add(A, B):
+    """Adds two matrices A and B."""
+    if not isinstance(A, list) or not isinstance(B, list):
+        return None
+    if len(A) != len(B) or len(A[0]) != len(B[0]):
+        return None
+    
+    rows = len(A)
+    cols = len(A[0])
+    result = [[0 for _ in range(cols)] for _ in range(rows)]
+    
+    for i in range(rows):
+        for j in range(cols):
+            result[i][j] = A[i][j] + B[i][j]
+    return result
+
+def matrix_sub(A, B):
+    """Subtracts matrix B from A."""
+    if not isinstance(A, list) or not isinstance(B, list):
+        return None
+    if len(A) != len(B) or len(A[0]) != len(B[0]):
+        return None
+    
+    rows = len(A)
+    cols = len(A[0])
+    result = [[0 for _ in range(cols)] for _ in range(rows)]
+    
+    for i in range(rows):
+        for j in range(cols):
+            result[i][j] = A[i][j] - B[i][j]
+    return result
+
+def matrix_mul(A, B):
+    """Multiplies two matrices A and B."""
+    if not isinstance(A, list) or not isinstance(B, list):
+        return None
+    if len(A[0]) != len(B):
+        return None
+    
+    rows_A = len(A)
+    cols_A = len(A[0])
+    cols_B = len(B[0])
+    result = [[0 for _ in range(cols_B)] for _ in range(rows_A)]
+    
+    for i in range(rows_A):
+        for j in range(cols_B):
+            for k in range(cols_A):
+                result[i][j] = result[i][j] + (A[i][k] * B[k][j])
+    return result
+
+def matrix_transpose(A):
+    """Transposes matrix A."""
+    if not isinstance(A, list):
+        return None
+    
+    rows = len(A)
+    cols = len(A[0])
+    result = [[0 for _ in range(rows)] for _ in range(cols)]
+    
+    for i in range(rows):
+        for j in range(cols):
+            result[j][i] = A[i][j]
+    return result
+
+def matrix_determinant(A):
+    """Calculates the determinant of a square matrix A."""
+    if not isinstance(A, list):
+        return None
+    if len(A) != len(A[0]):
+        return None
+    
+    n = len(A)
+    if n == 1:
+        return A[0][0]
+    if n == 2:
+        return (A[0][0] * A[1][1]) - (A[0][1] * A[1][0])
+    
+    det = 0
+    for c in range(n):
+        sub_matrix = []
+        for r in range(1, n):
+            sub_row = []
+            for k in range(n):
+                if k != c:
+                    sub_row.append(A[r][k])
+            sub_matrix.append(sub_row)
+        
+        sign = 1 if c % 2 == 0 else -1
+        det = det + (sign * A[0][c] * matrix_determinant(sub_matrix))
+    return det
+
+def matrix_minor(A, i, j):
+    """Calculates the minor of element A[i][j]."""
+    sub_matrix = []
+    n = len(A)
+    for r in range(n):
+        if r == i:
+            continue
+        row = []
+        for c in range(n):
+            if c == j:
+                continue
+            row.append(A[r][c])
+        sub_matrix.append(row)
+    return matrix_determinant(sub_matrix)
+
+def matrix_cofactor(A):
+    """Calculates the cofactor matrix of A."""
+    n = len(A)
+    cofactors = [[0 for _ in range(n)] for _ in range(n)]
+    
+    for i in range(n):
+        for j in range(n):
+            minor = matrix_minor(A, i, j)
+            sign = 1 if (i + j) % 2 == 0 else -1
+            cofactors[i][j] = sign * minor
+    return cofactors
+
+def matrix_inverse(A):
+    """Calculates the inverse of matrix A."""
+    det = matrix_determinant(A)
+    if det == 0:
+        return None
+    
+    n = len(A)
+    cofactors = matrix_cofactor(A)
+    adjugate = matrix_transpose(cofactors)
+    
+    for i in range(n):
+        for j in range(n):
+            inverse[i][j] = adjugate[i][j] / det
+    return inverse
+
+def matrix_trace(A):
+    """Calculates the trace of a square matrix."""
+    if not isinstance(A, list) or len(A) != len(A[0]):
+        return None
+    
+    trace = 0
+    for i in range(len(A)):
+        trace += A[i][i]
+    return trace
+
+def matrix_rank(A):
+    """Calculates the rank of a matrix using Gaussian elimination."""
+    if not isinstance(A, list):
+        return None
+    
+    rows = len(A)
+    cols = len(A[0])
+    rank = cols
+    
+    mat = [row[:] for row in A] # Copy
+    
+    for row in range(rank):
+        if row < rows and mat[row][row] != 0:
+            for col in range(rows):
+                if col != row:
+                    multiplier = mat[col][row] / mat[row][row]
+                    for i in range(row, rank):
+                        mat[col][i] -= multiplier * mat[row][i]
+        else:
+            reduce = True
+            for i in range(row + 1, rows):
+                if mat[i][row] != 0:
+                    mat[row], mat[i] = mat[i], mat[row]
+                    reduce = False
+                    break
+            
+            if reduce:
+                rank -= 1
+                for i in range(rows):
+                    mat[i][row] = mat[i][rank]
+                row -= 1
+    return rank
