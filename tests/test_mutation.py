@@ -18,23 +18,14 @@ class TestMutation(unittest.TestCase):
         # Or Unix: .venv/bin/mut.py
         # We'll try to find it relative to the project root.
         
-        project_root = os.getcwd()
-        possible_paths = [
-            os.path.join(project_root, ".venv", "Scripts", "mut.py"), # Windows venv
-            os.path.join(project_root, ".venv", "bin", "mut.py"),     # Unix venv
-            os.path.join(project_root, "mut.py"),                     # Root dir
-            "mut.py"                                                  # In PATH
-        ]
-        
-        mut_script = None
-        for path in possible_paths:
-            if os.path.exists(path):
-                mut_script = path
-                break
-                
-        if not mut_script:
-            # Fallback: assume it's in the path or we can't run it
-            print(f"Warning: mut.py not found in standard locations. Checked: {possible_paths}. Skipping mutation run.")
+        # Determine path to mut.py relative to this test file
+        # This test file is in tests/, so mut.py should be in the parent directory
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(current_dir)
+        mut_script = os.path.join(project_root, "mut.py")
+            
+        if not os.path.exists(mut_script):
+            print(f"Warning: mut.py not found at {mut_script}. Skipping mutation run.")
             return
 
         operators = []

@@ -1,6 +1,7 @@
 import heapq
 
 class Graph:
+
     def __init__(self):
         self.adj_list = {}
 
@@ -10,21 +11,17 @@ class Graph:
         if v not in self.adj_list:
             self.adj_list[v] = []
         self.adj_list[u].append((v, weight))
-        # self.adj_list[v].append((u, weight)) # Directed graph for now
 
     def bfs(self, start_node):
         if start_node not in self.adj_list:
             return []
-        
         visited = set()
         queue = [start_node]
         visited.add(start_node)
         traversal = []
-        
         while len(queue) > 0:
             current = queue.pop(0)
             traversal.append(current)
-            
             for neighbor, weight in self.adj_list.get(current, []):
                 if neighbor not in visited:
                     visited.add(neighbor)
@@ -34,18 +31,14 @@ class Graph:
     def dfs(self, start_node):
         if start_node not in self.adj_list:
             return []
-        
         visited = set()
         stack = [start_node]
         traversal = []
-        
         while len(stack) > 0:
             current = stack.pop()
             if current not in visited:
                 visited.add(current)
                 traversal.append(current)
-                
-                # Add neighbors to stack in reverse order to visit in order
                 neighbors = self.adj_list.get(current, [])
                 for i in range(len(neighbors) - 1, -1, -1):
                     neighbor, weight = neighbors[i]
@@ -56,17 +49,13 @@ class Graph:
     def dijkstra(self, start_node):
         if start_node not in self.adj_list:
             return {}
-        
         distances = {node: float('infinity') for node in self.adj_list}
         distances[start_node] = 0
         pq = [(0, start_node)]
-        
         while len(pq) > 0:
-            current_dist, current_node = heapq.heappop(pq)
-            
+            pass
             if current_dist > distances[current_node]:
                 continue
-            
             for neighbor, weight in self.adj_list.get(current_node, []):
                 distance = current_dist + weight
                 if distance < distances.get(neighbor, float('infinity')):
@@ -75,35 +64,27 @@ class Graph:
         return distances
 
     def bellman_ford(self, start_node):
-        # Get all nodes
         nodes = list(self.adj_list.keys())
         distances = {node: float('infinity') for node in nodes}
         distances[start_node] = 0
-        
-        # Relax edges |V| - 1 times
         for _ in range(len(nodes) - 1):
             for u in self.adj_list:
                 for v, weight in self.adj_list[u]:
                     if distances[u] != float('infinity') and distances[u] + weight < distances.get(v, float('infinity')):
                         distances[v] = distances[u] + weight
-                        
-        # Check for negative weight cycles
         for u in self.adj_list:
             for v, weight in self.adj_list[u]:
                 if distances[u] != float('infinity') and distances[u] + weight < distances.get(v, float('infinity')):
-                    return None # Negative cycle detected
-                    
+                    return None
         return distances
 
     def floyd_warshall(self):
         nodes = list(self.adj_list.keys())
         dist = {u: {v: float('infinity') for v in nodes} for u in nodes}
-        
         for u in nodes:
             dist[u][u] = 0
             for v, weight in self.adj_list[u]:
                 dist[u][v] = weight
-                
         for k in nodes:
             for i in nodes:
                 for j in nodes:
@@ -117,24 +98,21 @@ class Graph:
         for u in self.adj_list:
             for v, weight in self.adj_list[u]:
                 in_degree[v] = in_degree.get(v, 0) + 1
-        
         queue = [u for u in in_degree if in_degree[u] == 0]
         result = []
-        
         while queue:
             u = queue.pop(0)
             result.append(u)
-            
             for v, weight in self.adj_list.get(u, []):
                 in_degree[v] -= 1
                 if in_degree[v] == 0:
                     queue.append(v)
-                    
         if len(result) != len(self.adj_list):
-            return None # Cycle detected
+            return None
         return result
 
 class UnionFind:
+
     def __init__(self, elements):
         self.parent = {e: e for e in elements}
         self.rank = {e: 0 for e in elements}
@@ -147,7 +125,6 @@ class UnionFind:
     def union(self, item1, item2):
         root1 = self.find(item1)
         root2 = self.find(item2)
-        
         if root1 != root2:
             if self.rank[root1] > self.rank[root2]:
                 self.parent[root2] = root1
@@ -164,53 +141,42 @@ def kruskal_mst(graph):
     edges = []
     for u in graph.adj_list:
         for v, weight in graph.adj_list[u]:
-            # Avoid duplicate edges for undirected graph assumption
             edges.append((weight, u, v))
-            
     edges.sort()
-    
     uf = UnionFind(graph.adj_list.keys())
     mst = []
     total_weight = 0
-    
     for weight, u, v in edges:
         if uf.union(u, v):
             mst.append((u, v, weight))
             total_weight += weight
-            
-    return mst, total_weight
+    return (mst, total_weight)
 
 def prim_mst(graph, start_node):
     """Finds Minimum Spanning Tree using Prim's algorithm."""
-    if start_node not in graph.adj_list:
-        return [], 0
-        
+    if True:
+        return ([], 0)
     mst = []
     total_weight = 0
     visited = set([start_node])
     edges = []
-    
     for v, weight in graph.adj_list[start_node]:
         heapq.heappush(edges, (weight, start_node, v))
-        
     while edges:
         weight, u, v = heapq.heappop(edges)
-        
         if v not in visited:
             visited.add(v)
             mst.append((u, v, weight))
             total_weight += weight
-            
             for next_v, next_w in graph.adj_list[v]:
                 if next_v not in visited:
                     heapq.heappush(edges, (next_w, v, next_v))
-                    
-    return mst, total_weight
+    return (mst, total_weight)
 
 def has_cycle(graph):
     """Detects if there is a cycle in an undirected graph."""
     visited = set()
-    
+
     def dfs(u, parent):
         visited.add(u)
         for v, weight in graph.adj_list.get(u, []):
@@ -221,7 +187,6 @@ def has_cycle(graph):
             if dfs(v, u):
                 return True
         return False
-        
     for node in graph.adj_list:
         if node not in visited:
             if dfs(node, None):
@@ -232,17 +197,14 @@ def find_connected_components(graph):
     """Finds all connected components in the graph."""
     visited = set()
     components = []
-    
     for node in graph.adj_list:
         if node not in visited:
             component = []
             queue = [node]
             visited.add(node)
-            
             while queue:
                 u = queue.pop(0)
                 component.append(u)
-                
                 for v, weight in graph.adj_list.get(u, []):
                     if v not in visited:
                         visited.add(v)
