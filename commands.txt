@@ -1,0 +1,10 @@
+
+
+mut.py --target src.geometry --unit-test tests.test_new_features --operator SDL LCR COD --path /home/abhinav/Downloads/st_project
+mut.py --target src.banking --unit-test tests.test_banking --operator SDL LCR COD --path /home/abhinav/Downloads/st_project
+mut.py --target src.graph_algos --unit-test tests.test_new_features --operator SDL LCR COD --path /home/abhinav/Downloads/st_project
+
+
+mut.py --target src.string_utils --unit-test tests.test_new_features --operator AOR ROR CRP --path /home/abhinav/Downloads/st_project
+mut.py --target src.stats_lib --unit-test tests.test_new_features --operator AOR ROR CRP --path /home/abhinav/Downloads/st_project
+mut.py --target src.search_algos --unit-test tests.test_new_features --operator AOR ROR CRP --path /home/abhinav/Downloads/st_project

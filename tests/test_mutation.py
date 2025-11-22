@@ -20,13 +20,14 @@ class TestMutation(unittest.TestCase):
         
         # Determine path to mut.py relative to this test file
         # This test file is in tests/, so mut.py should be in the parent directory
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.dirname(current_dir)
-        mut_script = os.path.join(project_root, "mut.py")
+        # current_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(".")
+        # mut_script = os.path.join(project_root, "mut.py")
             
-        if not os.path.exists(mut_script):
-            print(f"Warning: mut.py not found at {mut_script}. Skipping mutation run.")
-            return
+        # if not os.path.exists(mut_script):
+        #     print(f"Warning: mut.py not found at {mut_script}. Skipping mutation run.")
+        #     return
+        mut_script = project_root + "/.venv/bin/mut.py"
 
         operators = []
         if mode == "unit":
@@ -35,7 +36,7 @@ class TestMutation(unittest.TestCase):
             operators = ["SDL", "LCR", "COD"]
             
         cmd = [
-            sys.executable,
+            # sys.executable,
             mut_script,
             "--target", target,
             "--unit-test", test_module,

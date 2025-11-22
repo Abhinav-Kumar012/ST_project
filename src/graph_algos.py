@@ -160,8 +160,6 @@ def kruskal_mst(graph):
 
 def prim_mst(graph, start_node):
     """Finds Minimum Spanning Tree using Prim's algorithm."""
-    if True:
-        return ([], 0)
     mst = []
     total_weight = 0
     visited = set([start_node])
