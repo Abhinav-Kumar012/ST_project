@@ -49,18 +49,24 @@ class Graph:
     def dijkstra(self, start_node):
         if start_node not in self.adj_list:
             return {}
-        distances = {node: float('infinity') for node in self.adj_list}
+
+        distances = {node: float('inf') for node in self.adj_list}
         distances[start_node] = 0
-        pq = [(0, start_node)]
+
+        pq = [(0, start_node)]  # (distance, node)
+
         while len(pq) > 0:
-            pass
+            current_dist, current_node = heapq.heappop(pq)
+
             if current_dist > distances[current_node]:
                 continue
+
             for neighbor, weight in self.adj_list.get(current_node, []):
                 distance = current_dist + weight
-                if distance < distances.get(neighbor, float('infinity')):
+                if distance < distances.get(neighbor, float('inf')):
                     distances[neighbor] = distance
                     heapq.heappush(pq, (distance, neighbor))
+
         return distances
 
     def bellman_ford(self, start_node):
