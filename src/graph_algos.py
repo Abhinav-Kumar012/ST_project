@@ -179,3 +179,73 @@ def kruskal_mst(graph):
             total_weight += weight
             
     return mst, total_weight
+
+def prim_mst(graph, start_node):
+    """Finds Minimum Spanning Tree using Prim's algorithm."""
+    if start_node not in graph.adj_list:
+        return [], 0
+        
+    mst = []
+    total_weight = 0
+    visited = set([start_node])
+    edges = []
+    
+    for v, weight in graph.adj_list[start_node]:
+        heapq.heappush(edges, (weight, start_node, v))
+        
+    while edges:
+        weight, u, v = heapq.heappop(edges)
+        
+        if v not in visited:
+            visited.add(v)
+            mst.append((u, v, weight))
+            total_weight += weight
+            
+            for next_v, next_w in graph.adj_list[v]:
+                if next_v not in visited:
+                    heapq.heappush(edges, (next_w, v, next_v))
+                    
+    return mst, total_weight
+
+def has_cycle(graph):
+    """Detects if there is a cycle in an undirected graph."""
+    visited = set()
+    
+    def dfs(u, parent):
+        visited.add(u)
+        for v, weight in graph.adj_list.get(u, []):
+            if v == parent:
+                continue
+            if v in visited:
+                return True
+            if dfs(v, u):
+                return True
+        return False
+        
+    for node in graph.adj_list:
+        if node not in visited:
+            if dfs(node, None):
+                return True
+    return False
+
+def find_connected_components(graph):
+    """Finds all connected components in the graph."""
+    visited = set()
+    components = []
+    
+    for node in graph.adj_list:
+        if node not in visited:
+            component = []
+            queue = [node]
+            visited.add(node)
+            
+            while queue:
+                u = queue.pop(0)
+                component.append(u)
+                
+                for v, weight in graph.adj_list.get(u, []):
+                    if v not in visited:
+                        visited.add(v)
+                        queue.append(v)
+            components.append(component)
+    return components

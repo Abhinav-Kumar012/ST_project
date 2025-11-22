@@ -93,3 +93,75 @@ def linear_regression(data_x, data_y):
     intercept = mu_y - (slope * mu_x)
     
     return slope, intercept
+
+def z_score(data, value):
+    """Calculates the Z-score of a value in the dataset."""
+    mu = mean(data)
+    sigma = std_dev(data)
+    
+    if mu is None or sigma is None or sigma == 0:
+        return None
+    return (value - mu) / sigma
+
+def percentile(data, p):
+    """Calculates the p-th percentile (0-100)."""
+    if not data or p < 0 or p > 100:
+        return None
+        
+    sorted_data = sorted(data)
+    n = len(data)
+    k = (n - 1) * (p / 100)
+    f = math.floor(k)
+    c = math.ceil(k)
+    
+    if f == c:
+        return sorted_data[int(k)]
+        
+    d0 = sorted_data[int(f)] * (c - k)
+    d1 = sorted_data[int(c)] * (k - f)
+    return d0 + d1
+
+def iqr(data):
+    """Calculates the Interquartile Range."""
+    q1 = percentile(data, 25)
+    q3 = percentile(data, 75)
+    
+    if q1 is None or q3 is None:
+        return None
+    return q3 - q1
+
+def skewness(data):
+    """Calculates the skewness of the dataset."""
+    if not data or len(data) < 3:
+        return None
+        
+    mu = mean(data)
+    sigma = std_dev(data)
+    
+    if sigma == 0:
+        return None
+        
+    n = len(data)
+    sum_cubed_diff = sum((x - mu) ** 3 for x in data)
+    
+    return (n / ((n - 1) * (n - 2))) * (sum_cubed_diff / (sigma ** 3))
+
+def kurtosis(data):
+    """Calculates the kurtosis of the dataset."""
+    if not data or len(data) < 4:
+        return None
+        
+    mu = mean(data)
+    sigma = std_dev(data)
+    
+    if sigma == 0:
+        return None
+        
+    n = len(data)
+    sum_fourth_diff = sum((x - mu) ** 4 for x in data)
+    
+    term1 = (n * (n + 1)) / ((n - 1) * (n - 2) * (n - 3))
+    term2 = sum_fourth_diff / (sigma ** 4)
+    term3 = (3 * (n - 1) ** 2) / ((n - 2) * (n - 3))
+    
+    return term1 * term2 - term3

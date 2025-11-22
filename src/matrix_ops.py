@@ -127,10 +127,51 @@ def matrix_inverse(A):
     cofactors = matrix_cofactor(A)
     adjugate = matrix_transpose(cofactors)
     
+    inverse = [[0 for _ in range(n)] for _ in range(n)]
     for i in range(n):
         for j in range(n):
             inverse[i][j] = adjugate[i][j] / det
     return inverse
+
+def matrix_power(A, n):
+    """Calculates A raised to the power of n."""
+    if not isinstance(A, list) or len(A) != len(A[0]):
+        return None
+    if n < 0:
+        return None # Not handling negative powers for now
+    if n == 0:
+        return identity_matrix(len(A))
+        
+    result = identity_matrix(len(A))
+    base = A
+    
+    while n > 0:
+        if n % 2 == 1:
+            result = matrix_mul(result, base)
+        base = matrix_mul(base, base)
+        n //= 2
+    return result
+
+def is_symmetric(A):
+    """Checks if matrix A is symmetric."""
+    if not isinstance(A, list) or len(A) != len(A[0]):
+        return False
+        
+    n = len(A)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if A[i][j] != A[j][i]:
+                return False
+    return True
+
+def identity_matrix(n):
+    """Generates an n x n identity matrix."""
+    if n <= 0:
+        return []
+    result = [[0 for _ in range(n)] for _ in range(n)]
+    for i in range(n):
+        result[i][i] = 1
+    return result
 
 def matrix_trace(A):
     """Calculates the trace of a square matrix."""

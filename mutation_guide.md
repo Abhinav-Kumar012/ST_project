@@ -56,6 +56,29 @@ To run mutation testing on the Banking System (integration level) and generate a
   --path .
 ```
 
+## 4. New Features Mutation Testing
+To run mutation testing on the newly added features and modules (Data Structures, String Utils, Search Algos, etc.) using the new test suite:
+
+### Generate HTML Report
+```bash
+./.venv/bin/mut.py \
+  --target src \
+  --unit-test tests.test_new_features \
+  --operator AOR ROR CRP \
+  --report-html mutation_reports/new_features \
+  --path .
+```
+
+### Generate YAML Report
+```bash
+./.venv/bin/mut.py \
+  --target src \
+  --unit-test tests.test_new_features \
+  --operator AOR ROR CRP \
+  --report new_features_report.yaml \
+  --path .
+```
+
 ## Explanation of Flags
 - `--target`: The module to mutate (source code).
 - `--unit-test`: The test module to run against the mutants.

@@ -94,3 +94,52 @@ def polygon_area(points):
         area += points[i].x * points[j].y
         area -= points[j].x * points[i].y
     return abs(area) / 2.0
+
+class Rectangle:
+    def __init__(self, top_left, width, height):
+        self.top_left = top_left
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+    def contains(self, point):
+        return (self.top_left.x <= point.x <= self.top_left.x + self.width and
+                self.top_left.y - self.height <= point.y <= self.top_left.y)
+
+class Circle:
+    def __init__(self, center, radius):
+        self.center = center
+        self.radius = radius
+
+    def area(self):
+        return math.pi * self.radius ** 2
+
+    def perimeter(self):
+        return 2 * math.pi * self.radius
+
+    def contains(self, point):
+        return self.center.distance_to(point) <= self.radius
+
+class Line:
+    def __init__(self, p1, p2):
+        self.p1 = p1
+        self.p2 = p2
+
+    def slope(self):
+        if self.p1.x == self.p2.x:
+            return float('infinity')
+        return (self.p2.y - self.p1.y) / (self.p2.x - self.p1.x)
+
+    def length(self):
+        return self.p1.distance_to(self.p2)
+
+    def y_intercept(self):
+        m = self.slope()
+        if m == float('infinity'):
+            return None
+        return self.p1.y - m * self.p1.x
