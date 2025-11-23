@@ -10,5 +10,6 @@ mut.py --target src.stats_lib --unit-test tests.test_new_features --operator AOR
 mut.py --target src.search_algos --unit-test tests.test_new_features --operator AOR ROR CRP --path .
 
 
-python -m unittest tests/test_integration.py .
-python -m unittest discover tests .
+mut.py --target src.integration --unit-test tests.test_integration --operator SDL LCR COD --path . --report-html Reports/integration_1
+mut.py --target src.integration_2 --unit-test tests.test_integration_2 --operator SDL LCR COD --path . --report-html Reports/integration_2
+mut.py --target src.integration_3 --unit-test tests.test_integration_3 --operator SDL LCR COD --path . --report-html Reports/integration_3

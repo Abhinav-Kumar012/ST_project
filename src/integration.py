@@ -1,0 +1,26 @@
+import math
+from src import utils, geometry, banking, stats_lib
+
+def test_complex_financial_geometry_scenario(a,b,c,i):
+    roots = utils.solve_quadratic(a, b, c)
+    
+    width = min(roots)
+    height = max(roots)
+
+    rect = geometry.Rectangle(geometry.Point2D(0, height), width, height)
+    area = rect.area()
+
+    account = banking.SavingsAccount(initial_balance=area, interest_rate=i)
+
+    account.apply_interest()
+
+    success = account.withdraw(width)
+    
+    history = account.get_transaction_history()
+    
+    amounts = [t.amount for t in history]
+    
+    mean_amount = stats_lib.mean(amounts)
+    
+    std_dev = stats_lib.std_dev(amounts, population=True)
+    return mean_amount, std_dev
