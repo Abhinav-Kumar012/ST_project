@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number18').attr('title', 'SDL');
+        $('.line.number31').attr('title', 'COI');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.integration_2' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration_2.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_text_processing_pipeline (tests.test_integration_2.TestIntegration2)</code></li>
     
-    <li>duration - 0.021 s</li>
+    <li>duration - 0.016 s</li>
     
     
     <li>tests run - 1</li>
@@ -47,42 +47,77 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration_2.py", line 28, in test_text_processing_pipeline
-    index, mean_len = integration_2.text_processing_pipeline(words, "Madam")
-  File "src.integration_2", line 19, in text_processing_pipeline
-NameError: name 'target_snake' is not defined
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration_2.py", line 30, in test_text_processing_pipeline
+    self.assertEqual(index, 1)
+AssertionError: 2 != 1
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 18</li>
+    <li>COI - line 31</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [18]; toolbar: false;">from src import string_utils, sorting_algos, search_algos, stats_lib
+<pre class="brush: python; first-line: 1; highlight: [31]; toolbar: false;">from src import string_utils, sorting_algos, search_algos, stats_lib
 
 def text_processing_pipeline(words, target_word):
     
-    snake_case_words = [string_utils.to_snake_case(w) for w in words]
+    snake_case_words = []
+    for w in words:
+        sc = string_utils.to_snake_case(w)
+        
+        
+        
+        if sc is None:
+            sc = ''
+        elif len(sc) == 0:
+            sc = sc
+        else:
+            sc = sc
+        
+        
+        snake_case_words.append(sc)
+    
+    
+    palindromes = []
+    for w in snake_case_words:
+        is_pal = string_utils.is_palindrome(w)
+        
+        
+        if (is_pal and len(w) > 0):
+            palindromes.append(w)
+        
+        
+        elif not is_pal:
+            palindromes.append(w)
     
     
     
     
-    palindromes = [w for w in snake_case_words if string_utils.is_palindrome(w)]
+    if len(palindromes) == 0:
+        sorted_palindromes = []
+    else:
+        sorted_palindromes = sorting_algos.merge_sort(palindromes)
     
     
-    
-    sorted_palindromes = sorting_algos.merge_sort(palindromes)
-    
+    target_snake = string_utils.to_snake_case(target_word)
     
     
-    pass
-    index = search_algos.binary_search(sorted_palindromes, target_snake)
+    if target_snake == '':
+        index = -1
+    else:
+        index = search_algos.binary_search(sorted_palindromes, target_snake)
+    
     
     
     lengths = [len(w) for w in sorted_palindromes]
-    mean_length = stats_lib.mean(lengths)
+    
+    
+    if len(lengths) == 0:
+        mean_length = 0.0
+    else:
+        mean_length = stats_lib.mean(lengths)
     
     return (index, mean_length)</pre>
 

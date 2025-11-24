@@ -154,7 +154,7 @@ def matrix_power(A, n):
 
 def is_symmetric(A):
     """Checks if matrix A is symmetric."""
-    if not isinstance(A, list) or len(A) != len(A[0]):
+    if not isinstance(A, list) or not isinstance(A[0], list) or len(A) != len(A[0]) :
         return False
         
     n = len(A)
@@ -175,7 +175,7 @@ def identity_matrix(n):
 
 def matrix_trace(A):
     """Calculates the trace of a square matrix."""
-    if not isinstance(A, list) or len(A) != len(A[0]):
+    if not isinstance(A, list) or not isinstance(A[0], list) or len(A) != len(A[0]):
         return None
     
     trace = 0

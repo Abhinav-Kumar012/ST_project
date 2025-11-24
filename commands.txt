@@ -1,15 +1,17 @@
 
 
-mut.py --target src.geometry --unit-test tests.test_new_features --operator SDL LCR COD --path .
-mut.py --target src.banking --unit-test tests.test_banking --operator SDL LCR COD --path .
-mut.py --target src.graph_algos --unit-test tests.test_new_features --operator SDL LCR COD --path .
+mut.py --target src.geometry --unit-test tests.test_geometry --operator SDL LCR COD --path . --report-html Reports/unit_geometry
+mut.py --target src.banking --unit-test tests.test_banking --operator SDL LCR COD --path . --report-html Reports/unit_banking
+mut.py --target src.graph_algos --unit-test tests.test_graphs --operator SDL LCR COD --path .  --report-html Reports/unit_graph
+mut.py --target src.data_structures --unit-test tests.test_data_structures --operator SDL COD COI --path . --report-html Reports/unit_data_structures
+mut.py --target src.matrix_ops --unit-test tests.test_matrix --operator SDL LCR COD --path . --report-html Reports/unit_matrix_ops
 
 
-mut.py --target src.string_utils --unit-test tests.test_new_features --operator AOR ROR CRP --path .
+mut.py --target src.string_utils --unit-test tests.test_new_features --operator AOR ROR CRP --path . --report-html Reports/unit_str
 mut.py --target src.stats_lib --unit-test tests.test_new_features --operator AOR ROR CRP --path .
 mut.py --target src.search_algos --unit-test tests.test_new_features --operator AOR ROR CRP --path .
 
 
-mut.py --target src.integration --unit-test tests.test_integration --operator SDL LCR COD --path . --report-html Reports/integration_1
-mut.py --target src.integration_2 --unit-test tests.test_integration_2 --operator SDL LCR COD --path . --report-html Reports/integration_2
-mut.py --target src.integration_3 --unit-test tests.test_integration_3 --operator SDL LCR COD --path . --report-html Reports/integration_3
+mut.py --target src.integration --unit-test tests.test_integration --operator SDL LCR COI --path . --report-html Reports/integration_1
+mut.py --target src.integration_2 --unit-test tests.test_integration_2 --operator SDL LCR COI --path . --report-html Reports/integration_2
+mut.py --target src.integration_3 --unit-test tests.test_integration_3 --operator SDL LCR COI --path . --report-html Reports/integration_3

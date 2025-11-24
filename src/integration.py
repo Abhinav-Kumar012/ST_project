@@ -3,7 +3,6 @@ from src import utils, geometry, banking, stats_lib
 
 def test_complex_financial_geometry_scenario(a,b,c,i):
     roots = utils.solve_quadratic(a, b, c)
-    
     if roots[0] < 0 and roots[1] < 0:
         return None
     
