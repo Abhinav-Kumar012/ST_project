@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.integration' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_complex_financial_geometry_scenario (tests.test_integration.TestIntegrationScenarios)</code></li>
     
-    <li>duration - 0.027 s</li>
+    <li>duration - 0.016 s</li>
     
     
     <li>tests run - 1</li>
@@ -47,10 +47,9 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration.py", line 7, in test_complex_financial_geometry_scenario
-    mean_amount, std_dev = integration.test_complex_financial_geometry_scenario(1, -10, 21,0.1)
-  File "src.integration", line 26, in test_complex_financial_geometry_scenario
-NameError: name 'std_dev' is not defined
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration.py", line 8, in test_complex_financial_geometry_scenario
+    self.assertAlmostEqual(mean_amount, 4.55)
+AssertionError: 7.0 != 4.55 within 7 places (2.45 difference)
 </pre>
 
 <h3>Mutations</h3>
@@ -66,15 +65,25 @@ from src import utils, geometry, banking, stats_lib
 def test_complex_financial_geometry_scenario(a, b, c, i):
     roots = utils.solve_quadratic(a, b, c)
     
-    width = min(roots)
-    height = max(roots)
+    if (roots[0] < 0 and roots[1] < 0):
+        return None
+    
+    if (roots[0] < roots[1] or roots[1] == 0):
+        width = roots[1]
+        height = roots[0]
+    else:
+        width = roots[0]
+        height = roots[1]
     
     rect = geometry.Rectangle(geometry.Point2D(0, height), width, height)
     area = rect.area()
     
+    
+    
+    
     account = banking.SavingsAccount(initial_balance=area, interest_rate=i)
     
-    account.apply_interest()
+    pass
     
     success = account.withdraw(width)
     
@@ -84,7 +93,7 @@ def test_complex_financial_geometry_scenario(a, b, c, i):
     
     mean_amount = stats_lib.mean(amounts)
     
-    pass
+    std_dev = stats_lib.std_dev(amounts, population=True)
     return (mean_amount, std_dev)</pre>
 
     </div>

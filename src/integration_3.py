@@ -20,7 +20,7 @@ def graph_matrix_analysis(edges, start_node, end_node):
     
     for u, v, w in edges:
         if u in node_to_idx and v in node_to_idx:
-            adj_matrix[node_to_idx[u]][node_to_idx[v]] = 1 # Unweighted for matrix connectivity
+            adj_matrix[node_to_idx[u]][node_to_idx[v]] = w # Unweighted for matrix connectivity
             # Assuming undirected for matrix symmetry or directed? 
             # Graph add_edge is directed in the implementation I saw (u->v). 
             # Let's stick to directed.
@@ -40,4 +40,4 @@ def graph_matrix_analysis(edges, start_node, end_node):
     # 5. Utils: Check if number of common neighbors is prime
     is_num_common_prime = utils.is_prime(num_common)
     
-    return shortest_path_dist, is_num_common_prime
+    return shortest_path_dist, is_num_common_prime, adj_sq

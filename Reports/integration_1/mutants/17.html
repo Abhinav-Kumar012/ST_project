@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MutPy mutation report - mutation #1</title>
+    <title>MutPy mutation report - mutation #17</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     
@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number7').attr('title', 'LCR');
+        $('.line.number35').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -31,32 +31,42 @@
     <div class="container">
         
 <div class="page-header">
-    <h1>Mutation #1</h1>
+    <h1>Mutation #17</h1>
 </div>
 <h3>Details</h3>
 <ul>
     <li>module - <code><module 'src.integration' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration.py'></code></li>
-    <li><span class="label label-info">timeout</span></li>
+    <li><span class="label label-success">killed</span> by <code>test_complex_financial_geometry_scenario (tests.test_integration.TestIntegrationScenarios)</code></li>
     
-    <li>duration - 5.007 s</li>
+    <li>duration - 0.022 s</li>
     
+    
+    <li>tests run - 1</li>
     
 </ul>
+
+<h3>Exception traceback</h3>
+<pre>Traceback (most recent call last):
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration.py", line 7, in test_complex_financial_geometry_scenario
+    mean_amount, std_dev = integration.test_complex_financial_geometry_scenario(1, -10, 21,0.1)
+  File "src.integration", line 36, in test_complex_financial_geometry_scenario
+NameError: name 'std_dev' is not defined
+</pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>LCR - line 7</li>
+    <li>SDL - line 35</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [7]; toolbar: false;">import math
+<pre class="brush: python; first-line: 1; highlight: [35]; toolbar: false;">import math
 from src import utils, geometry, banking, stats_lib
 
 def test_complex_financial_geometry_scenario(a, b, c, i):
     roots = utils.solve_quadratic(a, b, c)
     
-    if (roots[0] < 0 or roots[1] < 0):
+    if (roots[0] < 0 and roots[1] < 0):
         return None
     
     if (roots[0] < roots[1] or roots[1] == 0):
@@ -84,7 +94,7 @@ def test_complex_financial_geometry_scenario(a, b, c, i):
     
     mean_amount = stats_lib.mean(amounts)
     
-    std_dev = stats_lib.std_dev(amounts, population=True)
+    pass
     return (mean_amount, std_dev)</pre>
 
     </div>

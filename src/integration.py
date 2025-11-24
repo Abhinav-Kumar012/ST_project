@@ -4,11 +4,21 @@ from src import utils, geometry, banking, stats_lib
 def test_complex_financial_geometry_scenario(a,b,c,i):
     roots = utils.solve_quadratic(a, b, c)
     
-    width = min(roots)
-    height = max(roots)
+    if roots[0] < 0 and roots[1] < 0:
+        return None
+    
+    if roots[0] < roots[1] or roots[1] == 0:
+        width = roots[1]
+        height = roots[0]
+    else:
+        width = roots[0]
+        height = roots[1]
 
     rect = geometry.Rectangle(geometry.Point2D(0, height), width, height)
     area = rect.area()
+
+    # circle = geometry.Circle(geometry.Point2D(width, height), width)
+    # area = circle.area()
 
     account = banking.SavingsAccount(initial_balance=area, interest_rate=i)
 

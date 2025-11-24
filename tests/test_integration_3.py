@@ -36,10 +36,11 @@ class TestIntegration3(unittest.TestCase):
         # Or make edges bidirectional? The graph implementation is directed.
         # Let's adjust the test expectation.
         
-        dist, is_prime = integration_3.graph_matrix_analysis(edges, 0, 3)
+        dist, is_prime, adj_sq = integration_3.graph_matrix_analysis(edges, 0, 3)
         
         self.assertEqual(dist, 2)
         self.assertFalse(is_prime) # 0 is not prime
+        self.assertEqual(adj_sq, [[0, 0, 0, 2], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]])
 
     def test_graph_matrix_analysis_with_common(self):
         # 0 -> 1
@@ -77,10 +78,11 @@ class TestIntegration3(unittest.TestCase):
         # But we also need shortest path from 0 to 1.
         # 0 to 1: No path. Dist = inf.
         
-        dist, is_prime = integration_3.graph_matrix_analysis(edges, 0, 1)
+        dist, is_prime, adj_sq = integration_3.graph_matrix_analysis(edges, 0, 1)
         
         self.assertEqual(dist, float('inf'))
         self.assertTrue(is_prime) # 2 is prime
+        self.assertEqual(adj_sq, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]])
 
 if __name__ == '__main__':
     unittest.main()

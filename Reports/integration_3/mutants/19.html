@@ -48,7 +48,7 @@
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
   File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration_3.py", line 39, in test_graph_matrix_analysis
-    dist, is_prime = integration_3.graph_matrix_analysis(edges, 0, 3)
+    dist, is_prime, adj_sq = integration_3.graph_matrix_analysis(edges, 0, 3)
   File "src.integration_3", line 43, in graph_matrix_analysis
 NameError: name 'is_num_common_prime' is not defined
 </pre>
@@ -82,7 +82,7 @@ def graph_matrix_analysis(edges, start_node, end_node):
     
     for (u, v, w) in edges:
         if (u in node_to_idx and v in node_to_idx):
-            adj_matrix[node_to_idx[u]][node_to_idx[v]] = 1
+            adj_matrix[node_to_idx[u]][node_to_idx[v]] = w
     
     
     
@@ -102,7 +102,7 @@ def graph_matrix_analysis(edges, start_node, end_node):
     
     pass
     
-    return (shortest_path_dist, is_num_common_prime)</pre>
+    return (shortest_path_dist, is_num_common_prime, adj_sq)</pre>
 
     </div>
 </body>

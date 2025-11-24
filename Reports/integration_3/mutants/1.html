@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.integration_3' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration_3.py'></code></li>
     <li><span class="label label-danger">survived</span></li>
     
-    <li>duration - 0.005 s</li>
+    <li>duration - 0.008 s</li>
     
     
     <li>tests run - 2</li>
@@ -74,7 +74,7 @@ def graph_matrix_analysis(edges, start_node, end_node):
     
     for (u, v, w) in edges:
         if (u in node_to_idx or v in node_to_idx):
-            adj_matrix[node_to_idx[u]][node_to_idx[v]] = 1
+            adj_matrix[node_to_idx[u]][node_to_idx[v]] = w
     
     
     
@@ -94,7 +94,7 @@ def graph_matrix_analysis(edges, start_node, end_node):
     
     is_num_common_prime = utils.is_prime(num_common)
     
-    return (shortest_path_dist, is_num_common_prime)</pre>
+    return (shortest_path_dist, is_num_common_prime, adj_sq)</pre>
 
     </div>
 </body>

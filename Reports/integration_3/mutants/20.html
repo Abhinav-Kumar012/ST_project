@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.integration_3' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration_3.py'></code></li>
     <li><span class="label label-info">timeout</span></li>
     
-    <li>duration - 5.007 s</li>
+    <li>duration - 5.005 s</li>
     
     
 </ul>
@@ -72,7 +72,7 @@ def graph_matrix_analysis(edges, start_node, end_node):
     
     for (u, v, w) in edges:
         if (u in node_to_idx and v in node_to_idx):
-            adj_matrix[node_to_idx[u]][node_to_idx[v]] = 1
+            adj_matrix[node_to_idx[u]][node_to_idx[v]] = w
     
     
     

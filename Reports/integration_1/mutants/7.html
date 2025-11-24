@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number15').attr('title', 'SDL');
+        $('.line.number14').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -47,33 +47,44 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration.py", line 10, in test_complex_financial_geometry_scenario
-    self.assertAlmostEqual(mean_amount, 2.55)
-AssertionError: 3.0 != 2.55 within 7 places (0.4500000000000002 difference)
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration.py", line 7, in test_complex_financial_geometry_scenario
+    mean_amount, std_dev = integration.test_complex_financial_geometry_scenario(1, -10, 21,0.1)
+  File "src.integration", line 17, in test_complex_financial_geometry_scenario
+UnboundLocalError: local variable 'width' referenced before assignment
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 15</li>
+    <li>SDL - line 14</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [15]; toolbar: false;">import math
+<pre class="brush: python; first-line: 1; highlight: [14]; toolbar: false;">import math
 from src import utils, geometry, banking, stats_lib
 
 def test_complex_financial_geometry_scenario(a, b, c, i):
     roots = utils.solve_quadratic(a, b, c)
     
-    width = min(roots)
-    height = max(roots)
+    if (roots[0] < 0 and roots[1] < 0):
+        return None
+    
+    if (roots[0] < roots[1] or roots[1] == 0):
+        width = roots[1]
+        height = roots[0]
+    else:
+        pass
+        height = roots[1]
     
     rect = geometry.Rectangle(geometry.Point2D(0, height), width, height)
     area = rect.area()
     
+    
+    
+    
     account = banking.SavingsAccount(initial_balance=area, interest_rate=i)
     
-    pass
+    account.apply_interest()
     
     success = account.withdraw(width)
     

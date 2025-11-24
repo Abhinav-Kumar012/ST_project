@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number21').attr('title', 'SDL');
+        $('.line.number18').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.integration' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_complex_financial_geometry_scenario (tests.test_integration.TestIntegrationScenarios)</code></li>
     
-    <li>duration - 0.022 s</li>
+    <li>duration - 0.023 s</li>
     
     
     <li>tests run - 1</li>
@@ -50,27 +50,37 @@
   File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration.py", line 7, in test_complex_financial_geometry_scenario
     mean_amount, std_dev = integration.test_complex_financial_geometry_scenario(1, -10, 21,0.1)
   File "src.integration", line 23, in test_complex_financial_geometry_scenario
-NameError: name 'amounts' is not defined
+NameError: name 'area' is not defined
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 21</li>
+    <li>SDL - line 18</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [21]; toolbar: false;">import math
+<pre class="brush: python; first-line: 1; highlight: [18]; toolbar: false;">import math
 from src import utils, geometry, banking, stats_lib
 
 def test_complex_financial_geometry_scenario(a, b, c, i):
     roots = utils.solve_quadratic(a, b, c)
     
-    width = min(roots)
-    height = max(roots)
+    if (roots[0] < 0 and roots[1] < 0):
+        return None
+    
+    if (roots[0] < roots[1] or roots[1] == 0):
+        width = roots[1]
+        height = roots[0]
+    else:
+        width = roots[0]
+        height = roots[1]
     
     rect = geometry.Rectangle(geometry.Point2D(0, height), width, height)
-    area = rect.area()
+    pass
+    
+    
+    
     
     account = banking.SavingsAccount(initial_balance=area, interest_rate=i)
     
@@ -80,7 +90,7 @@ def test_complex_financial_geometry_scenario(a, b, c, i):
     
     history = account.get_transaction_history()
     
-    pass
+    amounts = [t.amount for t in history]
     
     mean_amount = stats_lib.mean(amounts)
     
