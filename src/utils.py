@@ -1,25 +1,21 @@
 import math
 
-# ==========================================
-# Math Utilities
-# ==========================================
 
 def factorial(n):
-    """Calculates the factorial of a non-negative integer."""
     if not isinstance(n, int):
         return None
     if n < 0:
         return None
     if n == 0:
         return 1
-    
+
     result = 1
     for i in range(1, n + 1):
         result = result * i
     return result
 
+
 def fibonacci(n):
-    """Returns the nth Fibonacci number."""
     if not isinstance(n, int):
         return None
     if n < 0:
@@ -28,7 +24,7 @@ def fibonacci(n):
         return 0
     if n == 1:
         return 1
-    
+
     a = 0
     b = 1
     for _ in range(2, n + 1):
@@ -37,8 +33,8 @@ def fibonacci(n):
         b = temp
     return b
 
+
 def is_prime(n):
-    """Checks if a number is prime."""
     if not isinstance(n, int):
         return False
     if n <= 1:
@@ -47,7 +43,7 @@ def is_prime(n):
         return True
     if n % 2 == 0 or n % 3 == 0:
         return False
-    
+
     i = 5
     while i * i <= n:
         if n % i == 0 or n % (i + 2) == 0:
@@ -55,75 +51,70 @@ def is_prime(n):
         i = i + 6
     return True
 
+
 def gcd(a, b):
-    """Calculates the Greatest Common Divisor."""
     if not isinstance(a, int) or not isinstance(b, int):
         return None
-    
+
     while b:
         a, b = b, a % b
     return a
 
+
 def lcm(a, b):
-    """Calculates the Least Common Multiple."""
     if not isinstance(a, int) or not isinstance(b, int):
         return None
     if a == 0 or b == 0:
         return 0
-    
+
     return abs(a * b) // gcd(a, b)
 
+
 def power(base, exp):
-    """Calculates base to the power of exp."""
     if not isinstance(base, (int, float)) or not isinstance(exp, int):
         return None
-    
+
     if exp == 0:
         return 1
-    
+
     result = 1
     for _ in range(abs(exp)):
         result = result * base
-        
+
     if exp < 0:
         return 1 / result
     return result
 
+
 def solve_quadratic(a, b, c):
-    """Solves ax^2 + bx + c = 0."""
     if a == 0:
         return None
-    
-    delta = b*b - 4*a*c
-    
+
+    delta = b * b - 4 * a * c
+
     if delta < 0:
         return []
     elif delta == 0:
-        x = -b / (2*a)
+        x = -b / (2 * a)
         return [x]
     else:
-        x1 = (-b + math.sqrt(delta)) / (2*a)
-        x2 = (-b - math.sqrt(delta)) / (2*a)
+        x1 = (-b + math.sqrt(delta)) / (2 * a)
+        x2 = (-b - math.sqrt(delta)) / (2 * a)
         return [x1, x2]
 
-# ==========================================
-# String Utilities
-# ==========================================
 
 def is_palindrome(s):
-    """Checks if a string is a palindrome."""
     if not isinstance(s, str):
         return False
-    
-    # Remove non-alphanumeric characters and convert to lowercase
+
     cleaned = ""
     for char in s:
         if char.isalnum():
             cleaned = cleaned + char.lower()
-            
+
     left = 0
     right = len(cleaned) - 1
-    
+
     while left < right:
         if cleaned[left] != cleaned[right]:
             return False
@@ -131,21 +122,21 @@ def is_palindrome(s):
         right = right - 1
     return True
 
+
 def reverse_string(s):
-    """Reverses a string."""
     if not isinstance(s, str):
         return None
-    
+
     result = ""
     for i in range(len(s) - 1, -1, -1):
         result = result + s[i]
     return result
 
+
 def count_vowels(s):
-    """Counts the number of vowels in a string."""
     if not isinstance(s, str):
         return None
-    
+
     vowels = "aeiouAEIOU"
     count = 0
     for char in s:
@@ -153,31 +144,27 @@ def count_vowels(s):
             count = count + 1
     return count
 
+
 def caesar_cipher(text, shift):
-    """Encrypts text using Caesar Cipher."""
     if not isinstance(text, str) or not isinstance(shift, int):
         return None
-    
+
     result = ""
     for char in text:
         if char.isalpha():
-            start = ord('A') if char.isupper() else ord('a')
-            # (char_code - start + shift) % 26 + start
+            start = ord("A") if char.isupper() else ord("a")
+
             new_char = chr((ord(char) - start + shift) % 26 + start)
             result = result + new_char
         else:
             result = result + char
     return result
 
-# ==========================================
-# List Utilities
-# ==========================================
 
 def bubble_sort(arr):
-    """Sorts a list using Bubble Sort."""
     if not isinstance(arr, list):
         return None
-    
+
     n = len(arr)
     for i in range(n):
         for j in range(0, n - i - 1):
@@ -185,14 +172,14 @@ def bubble_sort(arr):
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
     return arr
 
+
 def binary_search(arr, target):
-    """Searches for a target in a sorted list."""
     if not isinstance(arr, list):
         return -1
-    
+
     low = 0
     high = len(arr) - 1
-    
+
     while low <= high:
         mid = (low + high) // 2
         if arr[mid] == target:
@@ -203,44 +190,44 @@ def binary_search(arr, target):
             high = mid - 1
     return -1
 
+
 def list_sum(arr):
-    """Calculates the sum of a list of numbers."""
     if not isinstance(arr, list):
         return None
-    
+
     total = 0
     for x in arr:
         if isinstance(x, (int, float)):
             total = total + x
     return total
 
+
 def list_max(arr):
-    """Finds the maximum value in a list."""
     if not isinstance(arr, list) or len(arr) == 0:
         return None
-    
+
     max_val = arr[0]
     for x in arr:
         if x > max_val:
             max_val = x
     return max_val
 
+
 def list_min(arr):
-    """Finds the minimum value in a list."""
     if not isinstance(arr, list) or len(arr) == 0:
         return None
-    
+
     min_val = arr[0]
     for x in arr:
         if x < min_val:
             min_val = x
     return min_val
 
+
 def remove_duplicates(arr):
-    """Removes duplicates from a list while preserving order."""
     if not isinstance(arr, list):
         return None
-    
+
     result = []
     seen = set()
     for x in arr:
@@ -249,15 +236,15 @@ def remove_duplicates(arr):
             seen.add(x)
     return result
 
+
 def merge_lists(list1, list2):
-    """Merges two sorted lists into one sorted list."""
     if not isinstance(list1, list) or not isinstance(list2, list):
         return None
-    
+
     result = []
     i = 0
     j = 0
-    
+
     while i < len(list1) and j < len(list2):
         if list1[i] < list2[j]:
             result.append(list1[i])
@@ -265,7 +252,7 @@ def merge_lists(list1, list2):
         else:
             result.append(list2[j])
             j = j + 1
-            
+
     result.extend(list1[i:])
     result.extend(list2[j:])
     return result

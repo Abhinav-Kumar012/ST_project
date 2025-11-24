@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number89').attr('title', 'SDL');
+        $('.line.number84').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.geometry' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/geometry.py'></code></li>
     <li><span class="label label-danger">survived</span></li>
     
-    <li>duration - 0.008 s</li>
+    <li>duration - 0.007 s</li>
     
     
     <li>tests run - 26</li>
@@ -48,11 +48,11 @@
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 89</li>
+    <li>SDL - line 84</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [89]; toolbar: false;">import math
+<pre class="brush: python; first-line: 1; highlight: [84]; toolbar: false;">import math
 
 class Point2D:
     def __init__(self, x, y):
@@ -84,7 +84,6 @@ class Point3D:
         return f'Point3D({self.x}, {self.y}, {self.z})'
 
 def area_triangle(p1, p2, p3):
-    """Calculates area of a triangle using Heron's formula."""
     a = p1.distance_to(p2)
     b = p2.distance_to(p3)
     c = p3.distance_to(p1)
@@ -125,9 +124,6 @@ def distance_between_points(p1, p2):
     return p1.distance_to(p2)
 
 def is_collinear(p1, p2, p3):
-    '''Checks if three 2D points are collinear.'''
-    
-    
     area = ((p1.x * (p2.y - p3.y)) + (p2.x * (p3.y - p1.y))) + (p3.x * (p1.y - p2.y))
     return abs(area) < 1e-09
 
@@ -137,7 +133,6 @@ def slope(p1, p2):
     return (p2.y - p1.y) / (p2.x - p1.x)
 
 def polygon_area(points):
-    '''Calculates area of a polygon using Shoelace formula.'''
     n = len(points)
     if n < 3:
         pass

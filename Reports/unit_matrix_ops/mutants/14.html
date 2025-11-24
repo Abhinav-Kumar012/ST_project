@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number188').attr('title', 'COD');
+        $('.line.number186').attr('title', 'COD');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.matrix_ops' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/matrix_ops.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_matrix_rank_full (tests.test_matrix.TestMatrixOperations)</code></li>
     
-    <li>duration - 0.018 s</li>
+    <li>duration - 0.014 s</li>
     
     
     <li>tests run - 25</li>
@@ -47,7 +47,7 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_matrix.py", line 127, in test_matrix_rank_full
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_matrix.py", line 123, in test_matrix_rank_full
     self.assertEqual(matrix_rank(A), 2)
 AssertionError: None != 2
 </pre>
@@ -55,13 +55,11 @@ AssertionError: None != 2
 <h3>Mutations</h3>
 <ul>
     
-    <li>COD - line 188</li>
+    <li>COD - line 186</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 2; highlight: [188]; toolbar: false;">
-def matrix_add(A, B):
-    '''Adds two matrices A and B.'''
+<pre class="brush: python; first-line: 1; highlight: [186]; toolbar: false;">def matrix_add(A, B):
     if (not (isinstance(A, list)) or not (isinstance(B, list))):
         return None
     if (len(A) != len(B) or len(A[0]) != len(B[0])):
@@ -76,8 +74,8 @@ def matrix_add(A, B):
             result[i][j] = A[i][j] + B[i][j]
     return result
 
+
 def matrix_sub(A, B):
-    '''Subtracts matrix B from A.'''
     if (not (isinstance(A, list)) or not (isinstance(B, list))):
         return None
     if (len(A) != len(B) or len(A[0]) != len(B[0])):
@@ -92,8 +90,8 @@ def matrix_sub(A, B):
             result[i][j] = A[i][j] - B[i][j]
     return result
 
+
 def matrix_mul(A, B):
-    '''Multiplies two matrices A and B.'''
     if (not (isinstance(A, list)) or not (isinstance(B, list))):
         return None
     if len(A[0]) != len(B):
@@ -110,8 +108,8 @@ def matrix_mul(A, B):
                 result[i][j] = result[i][j] + (A[i][k] * B[k][j])
     return result
 
+
 def matrix_transpose(A):
-    '''Transposes matrix A.'''
     if not (isinstance(A, list)):
         return None
     
@@ -124,8 +122,8 @@ def matrix_transpose(A):
             result[j][i] = A[i][j]
     return result
 
+
 def matrix_determinant(A):
-    '''Calculates the determinant of a square matrix A.'''
     if not (isinstance(A, list)):
         return None
     if len(A) != len(A[0]):
@@ -151,8 +149,8 @@ def matrix_determinant(A):
         det = det + ((sign * A[0][c]) * matrix_determinant(sub_matrix))
     return det
 
+
 def matrix_minor(A, i, j):
-    '''Calculates the minor of element A[i][j].'''
     sub_matrix = []
     n = len(A)
     for r in range(n):
@@ -166,8 +164,8 @@ def matrix_minor(A, i, j):
         sub_matrix.append(row)
     return matrix_determinant(sub_matrix)
 
+
 def matrix_cofactor(A):
-    '''Calculates the cofactor matrix of A.'''
     n = len(A)
     cofactors = [[0 for _ in range(n)] for _ in range(n)]
     
@@ -178,8 +176,8 @@ def matrix_cofactor(A):
             cofactors[i][j] = sign * minor
     return cofactors
 
+
 def matrix_inverse(A):
-    '''Calculates the inverse of matrix A.'''
     det = matrix_determinant(A)
     if det == 0:
         return None
@@ -194,8 +192,8 @@ def matrix_inverse(A):
             inverse[i][j] = adjugate[i][j] / det
     return inverse
 
+
 def matrix_power(A, n):
-    '''Calculates A raised to the power of n.'''
     if (not (isinstance(A, list)) or len(A) != len(A[0])):
         return None
     if n < 0:
@@ -213,8 +211,8 @@ def matrix_power(A, n):
         n //= 2
     return result
 
+
 def is_symmetric(A):
-    '''Checks if matrix A is symmetric.'''
     if (not (isinstance(A, list)) or not (isinstance(A[0], list)) or len(A) != len(A[0])):
         return False
     
@@ -225,8 +223,8 @@ def is_symmetric(A):
                 return False
     return True
 
+
 def identity_matrix(n):
-    '''Generates an n x n identity matrix.'''
     if n <= 0:
         return []
     result = [[0 for _ in range(n)] for _ in range(n)]
@@ -234,8 +232,8 @@ def identity_matrix(n):
         result[i][i] = 1
     return result
 
+
 def matrix_trace(A):
-    '''Calculates the trace of a square matrix.'''
     if (not (isinstance(A, list)) or not (isinstance(A[0], list)) or len(A) != len(A[0])):
         return None
     
@@ -244,8 +242,8 @@ def matrix_trace(A):
         trace += A[i][i]
     return trace
 
+
 def matrix_rank(A):
-    '''Calculates the rank of a matrix using Gaussian elimination.'''
     if isinstance(A, list):
         return None
     

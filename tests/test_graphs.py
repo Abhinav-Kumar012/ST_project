@@ -1,12 +1,8 @@
 import unittest
-from src.graph_algos import (
-    Graph, UnionFind,
-    kruskal_mst, prim_mst,
-    has_cycle, find_connected_components
-)
+from src.graph_algos import *
+
 
 class TestGraphBasics(unittest.TestCase):
-
     def test_add_edge(self):
         g = Graph()
         g.add_edge("A", "B", 5)
@@ -40,7 +36,6 @@ class TestGraphBasics(unittest.TestCase):
 
 
 class TestShortestPaths(unittest.TestCase):
-
     def test_dijkstra(self):
         g = Graph()
         g.add_edge("A", "B", 2)
@@ -63,7 +58,7 @@ class TestShortestPaths(unittest.TestCase):
     def test_bellman_ford_negative_cycle(self):
         g = Graph()
         g.add_edge("A", "B", 1)
-        g.add_edge("B", "A", -2)  # negative cycle
+        g.add_edge("B", "A", -2)
         self.assertIsNone(g.bellman_ford("A"))
 
     def test_floyd_warshall(self):
@@ -75,7 +70,6 @@ class TestShortestPaths(unittest.TestCase):
 
 
 class TestTopologicalSort(unittest.TestCase):
-
     def test_topological_sort_valid(self):
         g = Graph()
         g.add_edge("A", "B")
@@ -91,13 +85,12 @@ class TestTopologicalSort(unittest.TestCase):
 
 
 class TestUnionFind(unittest.TestCase):
-
     def test_find_and_union(self):
         uf = UnionFind(["A", "B", "C"])
         self.assertEqual(uf.find("A"), "A")
         self.assertTrue(uf.union("A", "B"))
         self.assertEqual(uf.find("A"), uf.find("B"))
-        self.assertFalse(uf.union("A", "B"))  # already united
+        self.assertFalse(uf.union("A", "B"))
 
     def test_union_rank_logic(self):
         uf = UnionFind(["A", "B"])
@@ -108,7 +101,6 @@ class TestUnionFind(unittest.TestCase):
 
 
 class TestKruskal(unittest.TestCase):
-
     def test_kruskal_mst(self):
         g = Graph()
         g.add_edge("A", "B", 1)
@@ -120,7 +112,6 @@ class TestKruskal(unittest.TestCase):
 
 
 class TestPrim(unittest.TestCase):
-
     def test_prim_mst(self):
         g = Graph()
         g.add_edge("A", "B", 1)
@@ -132,7 +123,6 @@ class TestPrim(unittest.TestCase):
 
 
 class TestCycleDetection(unittest.TestCase):
-
     def test_has_cycle_true(self):
         g = Graph()
         g.add_edge("A", "B")
@@ -148,7 +138,6 @@ class TestCycleDetection(unittest.TestCase):
 
 
 class TestConnectedComponents(unittest.TestCase):
-
     def test_connected_components(self):
         g = Graph()
         g.add_edge("A", "B")

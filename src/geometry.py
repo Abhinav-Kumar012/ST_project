@@ -30,7 +30,6 @@ class Point3D:
         return f"Point3D({self.x}, {self.y}, {self.z})"
 
 def area_triangle(p1, p2, p3):
-    """Calculates area of a triangle using Heron's formula."""
     a = p1.distance_to(p2)
     b = p2.distance_to(p3)
     c = p3.distance_to(p1)
@@ -71,9 +70,6 @@ def distance_between_points(p1, p2):
     return p1.distance_to(p2)
 
 def is_collinear(p1, p2, p3):
-    """Checks if three 2D points are collinear."""
-    # Area of triangle formed by them is 0
-    # x1(y2 - y3) + x2(y3 - y1) + x3(y1 - y2) = 0
     area = p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y)
     return abs(area) < 1e-9
 
@@ -83,7 +79,6 @@ def slope(p1, p2):
     return (p2.y - p1.y) / (p2.x - p1.x)
 
 def polygon_area(points):
-    """Calculates area of a polygon using Shoelace formula."""
     n = len(points)
     if n < 3:
         return 0

@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number37').attr('title', 'SDL');
+        $('.line.number36').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.geometry' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/geometry.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_area_triangle (tests.test_geometry.TestGeometryFunctions)</code></li>
     
-    <li>duration - 0.023 s</li>
+    <li>duration - 0.019 s</li>
     
     
     <li>tests run - 5</li>
@@ -47,20 +47,20 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_geometry.py", line 52, in test_area_triangle
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_geometry.py", line 45, in test_area_triangle
     self.assertEqual(area_triangle(p1, p2, p3), 6)
-  File "src.geometry", line 38, in area_triangle
+  File "src.geometry", line 37, in area_triangle
 NameError: name 's' is not defined
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 37</li>
+    <li>SDL - line 36</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [37]; toolbar: false;">import math
+<pre class="brush: python; first-line: 1; highlight: [36]; toolbar: false;">import math
 
 class Point2D:
     def __init__(self, x, y):
@@ -92,7 +92,6 @@ class Point3D:
         return f'Point3D({self.x}, {self.y}, {self.z})'
 
 def area_triangle(p1, p2, p3):
-    """Calculates area of a triangle using Heron's formula."""
     a = p1.distance_to(p2)
     b = p2.distance_to(p3)
     c = p3.distance_to(p1)
@@ -133,9 +132,6 @@ def distance_between_points(p1, p2):
     return p1.distance_to(p2)
 
 def is_collinear(p1, p2, p3):
-    '''Checks if three 2D points are collinear.'''
-    
-    
     area = ((p1.x * (p2.y - p3.y)) + (p2.x * (p3.y - p1.y))) + (p3.x * (p1.y - p2.y))
     return abs(area) < 1e-09
 
@@ -145,7 +141,6 @@ def slope(p1, p2):
     return (p2.y - p1.y) / (p2.x - p1.x)
 
 def polygon_area(points):
-    '''Calculates area of a polygon using Shoelace formula.'''
     n = len(points)
     if n < 3:
         return 0

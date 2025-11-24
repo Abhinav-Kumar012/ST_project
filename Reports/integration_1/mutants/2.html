@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.integration' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_complex_financial_geometry_scenario (tests.test_integration.TestIntegrationScenarios)</code></li>
     
-    <li>duration - 0.02 s</li>
+    <li>duration - 0.023 s</li>
     
     
     <li>tests run - 1</li>
@@ -47,7 +47,7 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration.py", line 8, in test_complex_financial_geometry_scenario
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration.py", line 10, in test_complex_financial_geometry_scenario
     self.assertAlmostEqual(mean_amount, 4.55)
 AssertionError: 2.55 != 4.55 within 7 places (2.0 difference)
 </pre>
@@ -59,8 +59,8 @@ AssertionError: 2.55 != 4.55 within 7 places (2.0 difference)
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [9]; toolbar: false;">import math
-from src import utils, geometry, banking, stats_lib
+<pre class="brush: python; first-line: 1; highlight: [9]; toolbar: false;">from src import utils, geometry, banking, stats_lib
+
 
 def test_complex_financial_geometry_scenario(a, b, c, i):
     roots = utils.solve_quadratic(a, b, c)
@@ -76,9 +76,6 @@ def test_complex_financial_geometry_scenario(a, b, c, i):
     
     rect = geometry.Rectangle(geometry.Point2D(0, height), width, height)
     area = rect.area()
-    
-    
-    
     
     account = banking.SavingsAccount(initial_balance=area, interest_rate=i)
     

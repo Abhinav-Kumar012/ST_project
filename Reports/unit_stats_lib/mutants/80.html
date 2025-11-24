@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.stats_lib' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/stats_lib.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_skewness_invalid (tests.test_stats_lib.TestStatistics)</code></li>
     
-    <li>duration - 0.008 s</li>
+    <li>duration - 0.019 s</li>
     
     
     <li>tests run - 25</li>
@@ -47,7 +47,7 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_stats_lib.py", line 114, in test_skewness_invalid
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_stats_lib.py", line 110, in test_skewness_invalid
     self.assertIsNone(skewness([1, 1, 1]))
   File "src.stats_lib", line 147, in skewness
 ZeroDivisionError: float division by zero
@@ -62,14 +62,14 @@ ZeroDivisionError: float division by zero
 <h3>Mutant</h3>
 <pre class="brush: python; first-line: 1; highlight: [142]; toolbar: false;">import math
 
+
 def mean(data):
-    '''Calculates the arithmetic mean.'''
     if not data:
         return None
     return sum(data) / len(data)
 
+
 def median(data):
-    '''Calculates the median.'''
     if not data:
         return None
     sorted_data = sorted(data)
@@ -79,8 +79,8 @@ def median(data):
     else:
         return sorted_data[n // 2]
 
+
 def mode(data):
-    '''Calculates the mode.'''
     if not data:
         return None
     counts = {}
@@ -93,8 +93,8 @@ def mode(data):
         return modes[0]
     return modes
 
+
 def variance(data, population=True):
-    '''Calculates the variance.'''
     if (not data or len(data) < 2):
         return None
     mu = mean(data)
@@ -104,15 +104,15 @@ def variance(data, population=True):
     else:
         return sum_sq_diff / (len(data) - 1)
 
+
 def std_dev(data, population=True):
-    '''Calculates the standard deviation.'''
     var = variance(data, population)
     if var is None:
         return None
     return math.sqrt(var)
 
+
 def covariance(data_x, data_y, population=True):
-    '''Calculates the covariance between two datasets.'''
     if (len(data_x) != len(data_y) or len(data_x) < 2):
         return None
     
@@ -126,8 +126,8 @@ def covariance(data_x, data_y, population=True):
     else:
         return sum_diff_prod / (len(data_x) - 1)
 
+
 def correlation(data_x, data_y):
-    '''Calculates the Pearson correlation coefficient.'''
     cov = covariance(data_x, data_y)
     std_x = std_dev(data_x)
     std_y = std_dev(data_y)
@@ -137,8 +137,8 @@ def correlation(data_x, data_y):
     
     return cov / (std_x * std_y)
 
+
 def linear_regression(data_x, data_y):
-    '''Calculates the slope and intercept of the linear regression line.'''
     if (len(data_x) != len(data_y) or len(data_x) < 2):
         return None
     
@@ -156,8 +156,8 @@ def linear_regression(data_x, data_y):
     
     return (slope, intercept)
 
+
 def z_score(data, value):
-    '''Calculates the Z-score of a value in the dataset.'''
     mu = mean(data)
     sigma = std_dev(data)
     
@@ -165,8 +165,8 @@ def z_score(data, value):
         return None
     return (value - mu) / sigma
 
+
 def percentile(data, p):
-    '''Calculates the p-th percentile (0-100).'''
     if (not data or p < 0 or p > 100):
         return None
     
@@ -183,8 +183,8 @@ def percentile(data, p):
     d1 = sorted_data[int(c)] * (k - f)
     return d0 + d1
 
+
 def iqr(data):
-    '''Calculates the Interquartile Range.'''
     q1 = percentile(data, 25)
     q3 = percentile(data, 75)
     
@@ -192,8 +192,8 @@ def iqr(data):
         return None
     return q3 - q1
 
+
 def skewness(data):
-    '''Calculates the skewness of the dataset.'''
     if (not data or len(data) < 3):
         return None
     
@@ -208,8 +208,8 @@ def skewness(data):
     
     return (n / ((n - 1) * (n - 2))) * (sum_cubed_diff / (sigma ** 3))
 
+
 def kurtosis(data):
-    '''Calculates the kurtosis of the dataset.'''
     if (not data or len(data) < 4):
         return None
     

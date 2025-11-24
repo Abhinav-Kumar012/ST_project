@@ -53,7 +53,7 @@ class Graph:
         distances = {node: float('inf') for node in self.adj_list}
         distances[start_node] = 0
 
-        pq = [(0, start_node)]  # (distance, node)
+        pq = [(0, start_node)]  
 
         while len(pq) > 0:
             current_dist, current_node = heapq.heappop(pq)
@@ -99,7 +99,7 @@ class Graph:
         return dist
 
     def topological_sort(self):
-        """Performs topological sort on a DAG."""
+
         in_degree = {u: 0 for u in self.adj_list}
         for u in self.adj_list:
             for v, weight in self.adj_list[u]:
@@ -143,7 +143,6 @@ class UnionFind:
         return False
 
 def kruskal_mst(graph):
-    """Finds Minimum Spanning Tree using Kruskal's algorithm."""
     edges = []
     for u in graph.adj_list:
         for v, weight in graph.adj_list[u]:
@@ -159,7 +158,6 @@ def kruskal_mst(graph):
     return (mst, total_weight)
 
 def prim_mst(graph, start_node):
-    """Finds Minimum Spanning Tree using Prim's algorithm."""
     mst = []
     total_weight = 0
     visited = set([start_node])
@@ -178,7 +176,6 @@ def prim_mst(graph, start_node):
     return (mst, total_weight)
 
 def has_cycle(graph):
-    """Detects if there is a cycle in an undirected graph."""
     visited = set()
 
     def dfs(u, parent):
@@ -198,7 +195,6 @@ def has_cycle(graph):
     return False
 
 def find_connected_components(graph):
-    """Finds all connected components in the graph."""
     visited = set()
     components = []
     for node in graph.adj_list:

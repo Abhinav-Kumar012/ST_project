@@ -50,8 +50,8 @@
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [6]; toolbar: false;">import math
-from src import utils, geometry, banking, stats_lib
+<pre class="brush: python; first-line: 1; highlight: [6]; toolbar: false;">from src import utils, geometry, banking, stats_lib
+
 
 def test_complex_financial_geometry_scenario(a, b, c, i):
     roots = utils.solve_quadratic(a, b, c)
@@ -67,9 +67,6 @@ def test_complex_financial_geometry_scenario(a, b, c, i):
     
     rect = geometry.Rectangle(geometry.Point2D(0, height), width, height)
     area = rect.area()
-    
-    
-    
     
     account = banking.SavingsAccount(initial_balance=area, interest_rate=i)
     

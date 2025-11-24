@@ -1,15 +1,6 @@
 import unittest
 
-from src.string_utils import (
-    is_palindrome,
-    is_anagram,
-    levenshtein_distance,
-    to_camel_case,
-    to_snake_case,
-    count_vowels,
-    reverse_words,
-    longest_common_substring
-)
+from src.string_utils import *
 
 
 class TestStringUtils(unittest.TestCase):

@@ -36,9 +36,9 @@
 <h3>Details</h3>
 <ul>
     <li>module - <code><module 'src.banking' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/banking.py'></code></li>
-    <li><span class="label label-success">killed</span> by <code>test_deposit_positive (tests.test_banking.TestAccount)</code></li>
+    <li><span class="label label-success">killed</span> by <code>test_deposit_success (tests.test_banking.TestAccount)</code></li>
     
-    <li>duration - 0.015 s</li>
+    <li>duration - 0.021 s</li>
     
     
     <li>tests run - 2</li>
@@ -47,9 +47,9 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_banking.py", line 80, in test_deposit_positive
-    self.assertEqual(self.acc.get_balance(), 80)
-AssertionError: 50 != 80
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_banking.py", line 13, in test_deposit_success
+    self.assertEqual(self.acc.get_balance(), 150)
+AssertionError: 100 != 150
 </pre>
 
 <h3>Mutations</h3>
@@ -105,8 +105,6 @@ class SavingsAccount(Account):
     def apply_interest(self):
         interest = self.balance * self.interest_rate
         self.deposit(interest)
-        
-        
         if self.transactions:
             self.transactions[-1].type = 'INTEREST'
 
@@ -139,18 +137,13 @@ class Bank:
         from_acc = self.accounts[from_id]
         to_acc = self.accounts[to_id]
         
-        
         if from_acc.withdraw(amount):
             if to_acc.deposit(amount):
-                
                 from_acc.transactions[-1].type = f'TRANSFER_OUT_TO_{to_id}'
                 to_acc.transactions[-1].type = f'TRANSFER_IN_FROM_{from_id}'
                 return True
             else:
-                
                 from_acc.deposit(amount)
-                
-                
                 return False
         return False
     

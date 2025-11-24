@@ -1,8 +1,8 @@
 import unittest
 from src.utils import *
 
-class TestMathUtilities(unittest.TestCase):
 
+class TestMathUtilities(unittest.TestCase):
     def test_factorial_invalid(self):
         self.assertIsNone(factorial(3.5))
         self.assertIsNone(factorial(-1))
@@ -63,7 +63,7 @@ class TestMathUtilities(unittest.TestCase):
         self.assertEqual(power(2, 3), 8)
 
     def test_power_negative(self):
-        self.assertAlmostEqual(power(2, -3), 1/8)
+        self.assertAlmostEqual(power(2, -3), 1 / 8)
 
     def test_solve_quadratic_invalid(self):
         self.assertIsNone(solve_quadratic(0, 2, 1))
@@ -81,7 +81,6 @@ class TestMathUtilities(unittest.TestCase):
 
 
 class TestStringUtilities(unittest.TestCase):
-
     def test_is_palindrome_invalid(self):
         self.assertFalse(is_palindrome(10))
 
@@ -112,21 +111,20 @@ class TestStringUtilities(unittest.TestCase):
 
 
 class TestListUtilities(unittest.TestCase):
-
     def test_bubble_sort_invalid(self):
         self.assertIsNone(bubble_sort("not_list"))
 
     def test_bubble_sort_valid(self):
-        self.assertEqual(bubble_sort([3,1,2]), [1,2,3])
+        self.assertEqual(bubble_sort([3, 1, 2]), [1, 2, 3])
 
     def test_binary_search_invalid(self):
         self.assertEqual(binary_search("oops", 2), -1)
 
     def test_binary_search_found(self):
-        self.assertEqual(binary_search([1,2,3,4], 3), 2)
+        self.assertEqual(binary_search([1, 2, 3, 4], 3), 2)
 
     def test_binary_search_not_found(self):
-        self.assertEqual(binary_search([1,2,3], 5), -1)
+        self.assertEqual(binary_search([1, 2, 3], 5), -1)
 
     def test_list_sum_invalid(self):
         self.assertIsNone(list_sum("nope"))
@@ -139,26 +137,26 @@ class TestListUtilities(unittest.TestCase):
         self.assertIsNone(list_max([]))
 
     def test_list_max_valid(self):
-        self.assertEqual(list_max([1,3,2]), 3)
+        self.assertEqual(list_max([1, 3, 2]), 3)
 
     def test_list_min_invalid(self):
         self.assertIsNone(list_min("bad"))
         self.assertIsNone(list_min([]))
 
     def test_list_min_valid(self):
-        self.assertEqual(list_min([3,1,2]), 1)
+        self.assertEqual(list_min([3, 1, 2]), 1)
 
     def test_remove_duplicates_invalid(self):
         self.assertIsNone(remove_duplicates("no"))
 
     def test_remove_duplicates_valid(self):
-        self.assertEqual(remove_duplicates([1,2,1,3]), [1,2,3])
+        self.assertEqual(remove_duplicates([1, 2, 1, 3]), [1, 2, 3])
 
     def test_merge_lists_invalid(self):
         self.assertIsNone(merge_lists("a", []))
 
     def test_merge_lists_valid(self):
-        self.assertEqual(merge_lists([1,3],[2,4]), [1,2,3,4])
+        self.assertEqual(merge_lists([1, 3], [2, 4]), [1, 2, 3, 4])
 
 
 if __name__ == "__main__":

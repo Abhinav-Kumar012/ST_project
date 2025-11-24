@@ -1,7 +1,8 @@
 import unittest
 from src.matrix_ops import *
-class TestMatrixOperations(unittest.TestCase):
 
+
+class TestMatrixOperations(unittest.TestCase):
     def test_matrix_add_valid(self):
         A = [[1, 2], [3, 4]]
         B = [[5, 6], [7, 8]]
@@ -14,7 +15,6 @@ class TestMatrixOperations(unittest.TestCase):
         self.assertIsNone(matrix_add([[1, 2]], [[1, 2], [3, 4]]))
 
     def test_matrix_sub_valid(self):
-        
         A = [[5, 5], [5, 5]]
         B = [[1, 2], [3, 4]]
         self.assertEqual(matrix_sub(A, B), [[4, 3], [2, 1]])
@@ -57,11 +57,7 @@ class TestMatrixOperations(unittest.TestCase):
         self.assertEqual(matrix_determinant(A), -2)
 
     def test_matrix_determinant_3x3(self):
-        A = [
-            [6, 1, 1],
-            [4, -2, 5],
-            [2, 8, 7]
-        ]
+        A = [[6, 1, 1], [4, -2, 5], [2, 8, 7]]
         self.assertEqual(matrix_determinant(A), -306)
 
     def test_matrix_minor(self):
@@ -110,24 +106,24 @@ class TestMatrixOperations(unittest.TestCase):
         self.assertFalse(is_symmetric([1, 2, 3]))
 
     def test_identity_matrix_valid(self):
-        self.assertEqual(identity_matrix(3), [[1,0,0],[0,1,0],[0,0,1]])
+        self.assertEqual(identity_matrix(3), [[1, 0, 0], [0, 1, 0], [0, 0, 1]])
 
     def test_identity_matrix_zero(self):
         self.assertEqual(identity_matrix(0), [])
 
     def test_matrix_trace_valid(self):
-        A = [[1,2],[3,4]]
+        A = [[1, 2], [3, 4]]
         self.assertEqual(matrix_trace(A), 5)
 
     def test_matrix_trace_invalid(self):
-        self.assertIsNone(matrix_trace([1,2]))
+        self.assertIsNone(matrix_trace([1, 2]))
 
     def test_matrix_rank_full(self):
-        A = [[1,2],[3,4]]
+        A = [[1, 2], [3, 4]]
         self.assertEqual(matrix_rank(A), 2)
 
     def test_matrix_rank_reduction(self):
-        A = [[1, 2], [2, 4]]  # rank 1
+        A = [[1, 2], [2, 4]]
         self.assertEqual(matrix_rank(A), 1)
 
     def test_matrix_rank_invalid(self):

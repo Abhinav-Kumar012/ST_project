@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number94').attr('title', 'SDL');
+        $('.line.number92').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.sorting_algos' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/sorting_algos.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_selection_sort_general (tests.test_sorting_algos.TestSortingAlgorithms)</code></li>
     
-    <li>duration - 0.015 s</li>
+    <li>duration - 0.018 s</li>
     
     
     <li>tests run - 17</li>
@@ -47,8 +47,8 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_sorting_algos.py", line 64, in test_selection_sort_general
-    self.assertEqual(selection_sort([4,2,5,1]), [1,2,4,5])
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_sorting_algos.py", line 56, in test_selection_sort_general
+    self.assertEqual(selection_sort([4, 2, 5, 1]), [1, 2, 4, 5])
 AssertionError: Lists differ: [4, 2, 5, 1] != [1, 2, 4, 5]
 
 First differing element 0:
@@ -62,13 +62,11 @@ First differing element 0:
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 94</li>
+    <li>SDL - line 92</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 2; highlight: [94]; toolbar: false;">
-def quick_sort(arr):
-    '''Sorts an array using Quick Sort.'''
+<pre class="brush: python; first-line: 1; highlight: [92]; toolbar: false;">def quick_sort(arr):
     if len(arr) <= 1:
         return arr
     
@@ -79,8 +77,8 @@ def quick_sort(arr):
     
     return (quick_sort(left) + middle) + quick_sort(right)
 
+
 def merge_sort(arr):
-    '''Sorts an array using Merge Sort.'''
     if len(arr) <= 1:
         return arr
     
@@ -89,6 +87,7 @@ def merge_sort(arr):
     right = merge_sort(arr[mid:])
     
     return _merge(left, right)
+
 
 def _merge(left, right):
     result = []
@@ -107,19 +106,18 @@ def _merge(left, right):
     result.extend(right[j:])
     return result
 
+
 def heap_sort(arr):
-    '''Sorts an array using Heap Sort.'''
     n = len(arr)
-    
     
     for i in range((n // 2) - 1, -1, -1):
         _heapify(arr, n, i)
-    
     
     for i in range(n - 1, 0, -1):
         (arr[i], arr[0]) = (arr[0], arr[i])
         _heapify(arr, i, 0)
     return arr
+
 
 def _heapify(arr, n, i):
     largest = i
@@ -136,8 +134,8 @@ def _heapify(arr, n, i):
         (arr[i], arr[largest]) = (arr[largest], arr[i])
         _heapify(arr, n, largest)
 
+
 def shell_sort(arr):
-    '''Sorts an array using Shell Sort.'''
     n = len(arr)
     gap = n // 2
     
@@ -152,8 +150,8 @@ def shell_sort(arr):
         gap = gap // 2
     return arr
 
+
 def selection_sort(arr):
-    '''Sorts an array using Selection Sort.'''
     n = len(arr)
     for i in range(n):
         min_idx = i
@@ -163,8 +161,8 @@ def selection_sort(arr):
         (arr[i], arr[min_idx]) = (arr[min_idx], arr[i])
     return arr
 
+
 def insertion_sort(arr):
-    '''Sorts an array using Insertion Sort.'''
     for i in range(1, len(arr)):
         key = arr[i]
         j = i - 1

@@ -1,75 +1,74 @@
 import unittest
 from src.data_structures import LinkedList, Stack, Queue, BinarySearchTree
 
-class TestLinkedList(unittest.TestCase):
 
+class TestLinkedList(unittest.TestCase):
     def test_append(self):
         ll = LinkedList()
-        ll.append(10)                    # empty list append
+        ll.append(10)
         self.assertEqual(str(ll), "10")
 
-        ll.append(20)                    # append at end
+        ll.append(20)
         self.assertEqual(str(ll), "10 -> 20")
 
     def test_prepend(self):
         ll = LinkedList()
-        ll.prepend(10)                   # prepend to empty
+        ll.prepend(10)
         self.assertEqual(str(ll), "10")
 
-        ll.prepend(5)                    # prepend to non-empty
+        ll.prepend(5)
         self.assertEqual(str(ll), "5 -> 10")
 
     def test_delete(self):
         ll = LinkedList()
 
-        ll.delete(5)                     # delete from empty
+        ll.delete(5)
 
         ll.append(10)
         ll.append(20)
-        ll.delete(10)                    # delete head
+        ll.delete(10)
         self.assertEqual(str(ll), "20")
 
         ll.append(30)
         ll.append(40)
-        ll.delete(30)                    # delete middle node
+        ll.delete(30)
         self.assertEqual(str(ll), "20 -> 40")
 
-        ll.delete(999)                   # delete non-existing
+        ll.delete(999)
         self.assertEqual(str(ll), "20 -> 40")
 
     def test_find(self):
         ll = LinkedList()
-        self.assertFalse(ll.find(5))     # empty list find
-        
+        self.assertFalse(ll.find(5))
+
         ll.append(10)
         ll.append(20)
-        self.assertTrue(ll.find(10))     # first node
-        self.assertTrue(ll.find(20))     # second node
-        self.assertFalse(ll.find(30))    # missing
+        self.assertTrue(ll.find(10))
+        self.assertTrue(ll.find(20))
+        self.assertFalse(ll.find(30))
 
     def test_reverse(self):
         ll = LinkedList()
-        ll.reverse()                     # empty
+        ll.reverse()
         self.assertEqual(str(ll), "")
 
         ll.append(10)
-        ll.reverse()                     # single element
+        ll.reverse()
         self.assertEqual(str(ll), "10")
 
         ll.append(20)
         ll.append(30)
-        ll.reverse()                     # multi element
+        ll.reverse()
         self.assertEqual(str(ll), "30 -> 20 -> 10")
 
 
 class TestStack(unittest.TestCase):
-
     def test_push_pop_peek(self):
         s = Stack()
         self.assertTrue(s.is_empty())
 
-        self.assertIsNone(s.pop())       # pop empty
-        self.assertIsNone(s.peek())      # peek empty
+        self.assertIsNone(s.pop())
+        self.assertIsNone(s.peek())
 
         s.push(10)
         s.push(20)
@@ -80,12 +79,11 @@ class TestStack(unittest.TestCase):
 
 
 class TestQueue(unittest.TestCase):
-
     def test_enqueue_dequeue_peek(self):
         q = Queue()
         self.assertTrue(q.is_empty())
-        self.assertIsNone(q.dequeue())   # empty dequeue
-        self.assertIsNone(q.peek())      # empty peek
+        self.assertIsNone(q.dequeue())
+        self.assertIsNone(q.peek())
 
         q.enqueue(10)
         q.enqueue(20)
@@ -96,25 +94,24 @@ class TestQueue(unittest.TestCase):
 
 
 class TestBinarySearchTree(unittest.TestCase):
-
     def test_insert_and_search(self):
         bst = BinarySearchTree()
 
-        self.assertFalse(bst.search(10))   # empty tree
+        self.assertFalse(bst.search(10))
 
         bst.insert(10)
-        self.assertTrue(bst.search(10))    # root
+        self.assertTrue(bst.search(10))
 
         bst.insert(5)
         bst.insert(15)
         bst.insert(3)
         bst.insert(12)
 
-        self.assertTrue(bst.search(5))     # left
-        self.assertTrue(bst.search(15))    # right
-        self.assertTrue(bst.search(3))     # left-left
-        self.assertTrue(bst.search(12))    # right-left
-        self.assertFalse(bst.search(99))   # missing
+        self.assertTrue(bst.search(5))
+        self.assertTrue(bst.search(15))
+        self.assertTrue(bst.search(3))
+        self.assertTrue(bst.search(12))
+        self.assertFalse(bst.search(99))
 
     def test_traversals(self):
         bst = BinarySearchTree()
@@ -126,6 +123,5 @@ class TestBinarySearchTree(unittest.TestCase):
         self.assertEqual(bst.postorder_traversal(), [5, 15, 10])
 
 
-# Run all tests
 if __name__ == "__main__":
     unittest.main()

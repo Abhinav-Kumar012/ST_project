@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number13').attr('title', 'COI');
+        $('.line.number11').attr('title', 'COI');
         
     }, 0);
 </script>
@@ -48,19 +48,17 @@
 <h3>Mutations</h3>
 <ul>
     
-    <li>COI - line 13</li>
+    <li>COI - line 11</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [13]; toolbar: false;">from src import string_utils, sorting_algos, search_algos, stats_lib
+<pre class="brush: python; first-line: 1; highlight: [11]; toolbar: false;">from src import string_utils, sorting_algos, search_algos, stats_lib
+
 
 def text_processing_pipeline(words, target_word):
-    
     snake_case_words = []
     for w in words:
         sc = string_utils.to_snake_case(w)
-        
-        
         
         if sc is None:
             sc = ''
@@ -69,43 +67,31 @@ def text_processing_pipeline(words, target_word):
         else:
             sc = sc
         
-        
         snake_case_words.append(sc)
-    
     
     palindromes = []
     for w in snake_case_words:
         is_pal = string_utils.is_palindrome(w)
         
-        
         if (is_pal and len(w) > 0):
             palindromes.append(w)
         
-        
         elif is_pal:
             palindromes.append(w)
-    
-    
-    
     
     if len(palindromes) == 0:
         sorted_palindromes = []
     else:
         sorted_palindromes = sorting_algos.merge_sort(palindromes)
     
-    
     target_snake = string_utils.to_snake_case(target_word)
-    
     
     if target_snake == '':
         index = -1
     else:
         index = search_algos.binary_search(sorted_palindromes, target_snake)
     
-    
-    
     lengths = [len(w) for w in sorted_palindromes]
-    
     
     if len(lengths) == 0:
         mean_length = 0.0

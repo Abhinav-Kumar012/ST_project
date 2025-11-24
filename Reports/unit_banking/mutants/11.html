@@ -36,9 +36,9 @@
 <h3>Details</h3>
 <ul>
     <li>module - <code><module 'src.banking' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/banking.py'></code></li>
-    <li><span class="label label-success">killed</span> by <code>test_deposit_negative (tests.test_banking.TestAccount)</code></li>
+    <li><span class="label label-success">killed</span> by <code>test_deposit_failure (tests.test_banking.TestAccount)</code></li>
     
-    <li>duration - 0.021 s</li>
+    <li>duration - 0.023 s</li>
     
     
     <li>tests run - 1</li>
@@ -47,8 +47,8 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_banking.py", line 86, in test_deposit_negative
-    self.assertEqual(self.acc.get_balance(), 50)  # unchanged
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_banking.py", line 18, in test_deposit_failure
+    self.assertEqual(self.acc.get_balance(), 100)
   File "src.banking", line 34, in get_balance
 AttributeError: 'Account' object has no attribute 'balance'
 </pre>
@@ -106,8 +106,6 @@ class SavingsAccount(Account):
     def apply_interest(self):
         interest = self.balance * self.interest_rate
         self.deposit(interest)
-        
-        
         if self.transactions:
             self.transactions[-1].type = 'INTEREST'
 
@@ -140,18 +138,13 @@ class Bank:
         from_acc = self.accounts[from_id]
         to_acc = self.accounts[to_id]
         
-        
         if from_acc.withdraw(amount):
             if to_acc.deposit(amount):
-                
                 from_acc.transactions[-1].type = f'TRANSFER_OUT_TO_{to_id}'
                 to_acc.transactions[-1].type = f'TRANSFER_IN_FROM_{from_id}'
                 return True
             else:
-                
                 from_acc.deposit(amount)
-                
-                
                 return False
         return False
     

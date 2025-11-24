@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.string_utils' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/string_utils.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_snake_case_normal (tests.test_string_utils.TestStringUtils)</code></li>
     
-    <li>duration - 0.009 s</li>
+    <li>duration - 0.021 s</li>
     
     
     <li>tests run - 26</li>
@@ -47,7 +47,7 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_string_utils.py", line 62, in test_snake_case_normal
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_string_utils.py", line 53, in test_snake_case_normal
     self.assertEqual(to_snake_case("CamelCaseTest"), "camel_case_test")
   File "src.string_utils", line 56, in to_snake_case
 NameError: name 's1' is not defined
@@ -61,14 +61,13 @@ NameError: name 's1' is not defined
 </ul>
 <h3>Mutant</h3>
 <pre class="brush: python; first-line: 1; highlight: [55]; toolbar: false;">def is_palindrome(s):
-    '''Checks if a string is a palindrome.'''
     if not (isinstance(s, str)):
         return False
     cleaned = ''.join((c.lower() for c in s if c.isalnum()))
     return cleaned == cleaned[::-1]
 
+
 def is_anagram(s1, s2):
-    '''Checks if two strings are anagrams.'''
     if (not (isinstance(s1, str)) or not (isinstance(s2, str))):
         return False
     
@@ -77,8 +76,8 @@ def is_anagram(s1, s2):
     
     return sorted(cleaned1) == sorted(cleaned2)
 
+
 def levenshtein_distance(s1, s2):
-    '''Calculates the Levenshtein edit distance between two strings.'''
     if (not (isinstance(s1, str)) or not (isinstance(s2, str))):
         return None
     
@@ -100,41 +99,42 @@ def levenshtein_distance(s1, s2):
     
     return previous_row[-1]
 
+
 def to_camel_case(s):
-    '''Converts snake_case string to CamelCase.'''
     if not (isinstance(s, str)):
         return None
     
     components = s.split('_')
     return components[0] + ''.join((x.title() for x in components[1:]))
 
+
 def to_snake_case(s):
-    '''Converts CamelCase string to snake_case.'''
     if not (isinstance(s, str)):
         return None
     
     import re
+    
     pass
     return re.sub('([a-z0-9])([A-Z])', '\\1_\\2', s1).lower()
 
+
 def count_vowels(s):
-    '''Counts the number of vowels in a string.'''
     if not (isinstance(s, str)):
         return 0
     
     vowels = 'aeiouAEIOU'
     return sum((1 for char in s if char in vowels))
 
+
 def reverse_words(s):
-    '''Reverses the order of words in a string.'''
     if not (isinstance(s, str)):
         return None
     
     words = s.split()
     return ' '.join(reversed(words))
 
+
 def longest_common_substring(s1, s2):
-    '''Finds the longest common substring between two strings.'''
     m = [[0] * (1 + len(s2)) for _ in range(1 + len(s1))]
     (longest, x_longest) = (0, 0)
     

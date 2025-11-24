@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number220').attr('title', 'SDL');
+        $('.line.number207').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.utils' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/utils.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_list_max_invalid (tests.test_utils_2.TestListUtilities)</code></li>
     
-    <li>duration - 0.007 s</li>
+    <li>duration - 0.021 s</li>
     
     
     <li>tests run - 6</li>
@@ -47,7 +47,7 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_utils_2.py", line 138, in test_list_max_invalid
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_utils_2.py", line 136, in test_list_max_invalid
     self.assertIsNone(list_max("no"))
 AssertionError: 'o' is not None
 </pre>
@@ -55,18 +55,14 @@ AssertionError: 'o' is not None
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 220</li>
+    <li>SDL - line 207</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [220]; toolbar: false;">import math
-
-
-
+<pre class="brush: python; first-line: 1; highlight: [207]; toolbar: false;">import math
 
 
 def factorial(n):
-    '''Calculates the factorial of a non-negative integer.'''
     if not (isinstance(n, int)):
         return None
     if n < 0:
@@ -79,8 +75,8 @@ def factorial(n):
         result = result * i
     return result
 
+
 def fibonacci(n):
-    '''Returns the nth Fibonacci number.'''
     if not (isinstance(n, int)):
         return None
     if n < 0:
@@ -98,8 +94,8 @@ def fibonacci(n):
         b = temp
     return b
 
+
 def is_prime(n):
-    '''Checks if a number is prime.'''
     if not (isinstance(n, int)):
         return False
     if n <= 1:
@@ -116,8 +112,8 @@ def is_prime(n):
         i = i + 6
     return True
 
+
 def gcd(a, b):
-    '''Calculates the Greatest Common Divisor.'''
     if (not (isinstance(a, int)) or not (isinstance(b, int))):
         return None
     
@@ -125,8 +121,8 @@ def gcd(a, b):
         (a, b) = (b, a % b)
     return a
 
+
 def lcm(a, b):
-    '''Calculates the Least Common Multiple.'''
     if (not (isinstance(a, int)) or not (isinstance(b, int))):
         return None
     if (a == 0 or b == 0):
@@ -134,8 +130,8 @@ def lcm(a, b):
     
     return abs(a * b) // gcd(a, b)
 
+
 def power(base, exp):
-    '''Calculates base to the power of exp.'''
     if (not (isinstance(base, (int, float))) or not (isinstance(exp, int))):
         return None
     
@@ -150,8 +146,8 @@ def power(base, exp):
         return 1 / result
     return result
 
+
 def solve_quadratic(a, b, c):
-    '''Solves ax^2 + bx + c = 0.'''
     if a == 0:
         return None
     
@@ -168,14 +164,9 @@ def solve_quadratic(a, b, c):
         return [x1, x2]
 
 
-
-
-
 def is_palindrome(s):
-    '''Checks if a string is a palindrome.'''
     if not (isinstance(s, str)):
         return False
-    
     
     cleaned = ''
     for char in s:
@@ -192,8 +183,8 @@ def is_palindrome(s):
         right = right - 1
     return True
 
+
 def reverse_string(s):
-    '''Reverses a string.'''
     if not (isinstance(s, str)):
         return None
     
@@ -202,8 +193,8 @@ def reverse_string(s):
         result = result + s[i]
     return result
 
+
 def count_vowels(s):
-    '''Counts the number of vowels in a string.'''
     if not (isinstance(s, str)):
         return None
     
@@ -214,8 +205,8 @@ def count_vowels(s):
             count = count + 1
     return count
 
+
 def caesar_cipher(text, shift):
-    '''Encrypts text using Caesar Cipher.'''
     if (not (isinstance(text, str)) or not (isinstance(shift, int))):
         return None
     
@@ -231,11 +222,7 @@ def caesar_cipher(text, shift):
     return result
 
 
-
-
-
 def bubble_sort(arr):
-    '''Sorts a list using Bubble Sort.'''
     if not (isinstance(arr, list)):
         return None
     
@@ -246,8 +233,8 @@ def bubble_sort(arr):
                 (arr[j], arr[j + 1]) = (arr[j + 1], arr[j])
     return arr
 
+
 def binary_search(arr, target):
-    '''Searches for a target in a sorted list.'''
     if not (isinstance(arr, list)):
         return -1
     
@@ -264,8 +251,8 @@ def binary_search(arr, target):
             high = mid - 1
     return -1
 
+
 def list_sum(arr):
-    '''Calculates the sum of a list of numbers.'''
     if not (isinstance(arr, list)):
         return None
     
@@ -275,8 +262,8 @@ def list_sum(arr):
             total = total + x
     return total
 
+
 def list_max(arr):
-    '''Finds the maximum value in a list.'''
     if (not (isinstance(arr, list)) or len(arr) == 0):
         pass
     
@@ -286,8 +273,8 @@ def list_max(arr):
             max_val = x
     return max_val
 
+
 def list_min(arr):
-    '''Finds the minimum value in a list.'''
     if (not (isinstance(arr, list)) or len(arr) == 0):
         return None
     
@@ -297,8 +284,8 @@ def list_min(arr):
             min_val = x
     return min_val
 
+
 def remove_duplicates(arr):
-    '''Removes duplicates from a list while preserving order.'''
     if not (isinstance(arr, list)):
         return None
     
@@ -310,8 +297,8 @@ def remove_duplicates(arr):
             seen.add(x)
     return result
 
+
 def merge_lists(list1, list2):
-    '''Merges two sorted lists into one sorted list.'''
     if (not (isinstance(list1, list)) or not (isinstance(list2, list))):
         return None
     

@@ -1,14 +1,9 @@
 import unittest
 import math
-from src.geometry import (
-    Point2D, Point3D, area_triangle, area_circle, perimeter_circle,
-    volume_sphere, surface_area_sphere, volume_cylinder, surface_area_cylinder,
-    distance_between_points, is_collinear, slope, polygon_area,
-    Rectangle, Circle, Line
-)
+from src.geometry import *
+
 
 class TestPoint2D(unittest.TestCase):
-
     def test_distance(self):
         p1 = Point2D(0, 0)
         p2 = Point2D(3, 4)
@@ -26,7 +21,6 @@ class TestPoint2D(unittest.TestCase):
 
 
 class TestPoint3D(unittest.TestCase):
-
     def test_distance(self):
         p1 = Point3D(0, 0, 0)
         p2 = Point3D(1, 2, 2)
@@ -44,7 +38,6 @@ class TestPoint3D(unittest.TestCase):
 
 
 class TestGeometryFunctions(unittest.TestCase):
-
     def test_area_triangle(self):
         p1 = Point2D(0, 0)
         p2 = Point2D(3, 0)
@@ -60,7 +53,7 @@ class TestGeometryFunctions(unittest.TestCase):
         self.assertIsNone(perimeter_circle(-1))
 
     def test_volume_sphere(self):
-        self.assertAlmostEqual(volume_sphere(1), (4/3) * math.pi)
+        self.assertAlmostEqual(volume_sphere(1), (4 / 3) * math.pi)
         self.assertIsNone(volume_sphere(-1))
 
     def test_surface_area_sphere(self):
@@ -73,8 +66,9 @@ class TestGeometryFunctions(unittest.TestCase):
         self.assertIsNone(volume_cylinder(1, -2))
 
     def test_surface_area_cylinder(self):
-        self.assertEqual(surface_area_cylinder(1, 2),
-                         2 * math.pi * 1 * 2 + 2 * math.pi * 1**2)
+        self.assertEqual(
+            surface_area_cylinder(1, 2), 2 * math.pi * 1 * 2 + 2 * math.pi * 1**2
+        )
         self.assertIsNone(surface_area_cylinder(-1, 2))
         self.assertIsNone(surface_area_cylinder(1, -2))
 
@@ -102,15 +96,14 @@ class TestGeometryFunctions(unittest.TestCase):
 
     def test_polygon_area(self):
         # Square (0,0), (2,0), (2,2), (0,2)
-        pts = [Point2D(0,0), Point2D(2,0), Point2D(2,2), Point2D(0,2)]
+        pts = [Point2D(0, 0), Point2D(2, 0), Point2D(2, 2), Point2D(0, 2)]
         self.assertEqual(polygon_area(pts), 4)
 
         # Not enough points
-        self.assertEqual(polygon_area([Point2D(0,0)]), 0)
+        self.assertEqual(polygon_area([Point2D(0, 0)]), 0)
 
 
 class TestRectangle(unittest.TestCase):
-
     def test_area(self):
         r = Rectangle(Point2D(0, 5), 4, 3)
         self.assertEqual(r.area(), 12)
@@ -128,41 +121,39 @@ class TestRectangle(unittest.TestCase):
 
 
 class TestCircle(unittest.TestCase):
-
     def test_area(self):
-        c = Circle(Point2D(0,0), 2)
+        c = Circle(Point2D(0, 0), 2)
         self.assertEqual(c.area(), 4 * math.pi)
 
     def test_perimeter(self):
-        c = Circle(Point2D(0,0), 2)
+        c = Circle(Point2D(0, 0), 2)
         self.assertEqual(c.perimeter(), 4 * math.pi)
 
     def test_contains(self):
-        c = Circle(Point2D(0,0), 2)
-        inside = Point2D(1,1)
-        outside = Point2D(3,0)
+        c = Circle(Point2D(0, 0), 2)
+        inside = Point2D(1, 1)
+        outside = Point2D(3, 0)
         self.assertTrue(c.contains(inside))
         self.assertFalse(c.contains(outside))
 
 
 class TestLine(unittest.TestCase):
-
     def test_slope(self):
-        l = Line(Point2D(0,0), Point2D(2,2))
+        l = Line(Point2D(0, 0), Point2D(2, 2))
         self.assertEqual(l.slope(), 1)
 
-        vertical = Line(Point2D(1,0), Point2D(1,5))
+        vertical = Line(Point2D(1, 0), Point2D(1, 5))
         self.assertTrue(math.isinf(vertical.slope()))
 
     def test_length(self):
-        l = Line(Point2D(0,0), Point2D(3,4))
+        l = Line(Point2D(0, 0), Point2D(3, 4))
         self.assertEqual(l.length(), 5)
 
     def test_y_intercept(self):
-        l = Line(Point2D(0,0), Point2D(2,2))
+        l = Line(Point2D(0, 0), Point2D(2, 2))
         self.assertEqual(l.y_intercept(), 0)
 
-        vertical = Line(Point2D(1,0), Point2D(1,5))
+        vertical = Line(Point2D(1, 0), Point2D(1, 5))
         self.assertIsNone(vertical.y_intercept())
 
 

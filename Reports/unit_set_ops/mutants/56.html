@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number64').attr('title', 'SDL');
+        $('.line.number61').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.set_ops' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/set_ops.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_is_subset_true (tests.test_set_ops.TestSetOperations)</code></li>
     
-    <li>duration - 0.01 s</li>
+    <li>duration - 0.017 s</li>
     
     
     <li>tests run - 6</li>
@@ -47,21 +47,19 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_set_ops.py", line 52, in test_is_subset_true
-    self.assertTrue(is_subset([1,2], [1,2,3]))
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_set_ops.py", line 43, in test_is_subset_true
+    self.assertTrue(is_subset([1, 2], [1, 2, 3]))
 AssertionError: None is not true
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 64</li>
+    <li>SDL - line 61</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 2; highlight: [64]; toolbar: false;">
-def set_union(set_a, set_b):
-    '''Calculates the union of two lists representing sets.'''
+<pre class="brush: python; first-line: 1; highlight: [61]; toolbar: false;">def set_union(set_a, set_b):
     if (not (isinstance(set_a, list)) or not (isinstance(set_b, list))):
         return None
     
@@ -75,8 +73,8 @@ def set_union(set_a, set_b):
             result.append(x)
     return result
 
+
 def set_intersection(set_a, set_b):
-    '''Calculates the intersection of two lists representing sets.'''
     if (not (isinstance(set_a, list)) or not (isinstance(set_b, list))):
         return None
     
@@ -86,8 +84,8 @@ def set_intersection(set_a, set_b):
             result.append(x)
     return result
 
+
 def set_difference(set_a, set_b):
-    '''Calculates set_a - set_b.'''
     if (not (isinstance(set_a, list)) or not (isinstance(set_b, list))):
         return None
     
@@ -97,8 +95,8 @@ def set_difference(set_a, set_b):
             result.append(x)
     return result
 
+
 def set_symmetric_difference(set_a, set_b):
-    '''Calculates symmetric difference of two sets.'''
     if (not (isinstance(set_a, list)) or not (isinstance(set_b, list))):
         return None
     
@@ -107,15 +105,14 @@ def set_symmetric_difference(set_a, set_b):
     for x in set_a:
         if (x not in set_b and x not in result):
             result.append(x)
-    
     
     for x in set_b:
         if (x not in set_a and x not in result):
             result.append(x)
     return result
 
+
 def is_subset(sub, super_set):
-    '''Checks if sub is a subset of super_set.'''
     if (not (isinstance(sub, list)) or not (isinstance(super_set, list))):
         return False
     
@@ -124,8 +121,8 @@ def is_subset(sub, super_set):
             return False
     pass
 
+
 def power_set(s):
-    '''Generates the power set of a list.'''
     if not (isinstance(s, list)):
         return None
     
@@ -141,8 +138,8 @@ def power_set(s):
         result.append(subset)
     return result
 
+
 def cartesian_product(set_a, set_b):
-    '''Calculates Cartesian product of two sets.'''
     if (not (isinstance(set_a, list)) or not (isinstance(set_b, list))):
         return None
     
@@ -152,8 +149,8 @@ def cartesian_product(set_a, set_b):
             result.append((x, y))
     return result
 
+
 def jaccard_similarity(set_a, set_b):
-    '''Calculates Jaccard similarity coefficient.'''
     union = set_union(set_a, set_b)
     intersection = set_intersection(set_a, set_b)
     

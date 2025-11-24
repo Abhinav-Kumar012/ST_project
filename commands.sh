@@ -1,5 +1,6 @@
+#!/bin/bash
 
-
+# unit tests mutation commands
 mut.py --target src.geometry --unit-test tests.test_geometry --operator SDL LCR COD --path . --report-html Reports/unit_geometry
 mut.py --target src.banking --unit-test tests.test_banking --operator SDL LCR COD --path . --report-html Reports/unit_banking
 mut.py --target src.graph_algos --unit-test tests.test_graphs --operator SDL LCR COD --path .  --report-html Reports/unit_graph
@@ -12,12 +13,7 @@ mut.py --target src.stats_lib --unit-test tests.test_stats_lib --operator SDL LC
 mut.py --target src.string_utils --unit-test tests.test_string_utils --operator SDL LCR COD --path . --report-html Reports/unit_string_utils
 mut.py --target src.utils --unit-test tests.test_utils_2 --operator SDL LCR COD --path . --report-html Reports/unit_utils
 
-
-mut.py --target src.string_utils --unit-test tests.test_new_features --operator AOR ROR CRP --path . --report-html Reports/unit_str
-mut.py --target src.stats_lib --unit-test tests.test_new_features --operator AOR ROR CRP --path .
-mut.py --target src.search_algos --unit-test tests.test_new_features --operator AOR ROR CRP --path .
-
-
+# integration tests mutation commands
 mut.py --target src.integration --unit-test tests.test_integration --operator SDL LCR COI --path . --report-html Reports/integration_1
 mut.py --target src.integration_2 --unit-test tests.test_integration_2 --operator SDL LCR COI --path . --report-html Reports/integration_2
 mut.py --target src.integration_3 --unit-test tests.test_integration_3 --operator SDL LCR COI --path . --report-html Reports/integration_3

@@ -1,14 +1,10 @@
 import math
 import unittest
 
-from src.stats_lib import (
-    mean, median, mode, variance, std_dev, covariance, correlation,
-    linear_regression, z_score, percentile, iqr, skewness, kurtosis
-)
+from src.stats_lib import *
 
 
 class TestStatistics(unittest.TestCase):
-
     def test_mean_normal(self):
         self.assertEqual(mean([1, 2, 3]), 2)
 
@@ -35,7 +31,7 @@ class TestStatistics(unittest.TestCase):
         self.assertIsNone(mode([]))
 
     def test_variance_population(self):
-        self.assertAlmostEqual(variance([1, 2, 3], True), 2/3)
+        self.assertAlmostEqual(variance([1, 2, 3], True), 2 / 3)
 
     def test_variance_sample(self):
         self.assertAlmostEqual(variance([1, 2, 3], False), 1)
@@ -45,13 +41,13 @@ class TestStatistics(unittest.TestCase):
         self.assertIsNone(variance([1], True))
 
     def test_std_dev_population(self):
-        self.assertAlmostEqual(std_dev([1, 2, 3], True), math.sqrt(2/3))
+        self.assertAlmostEqual(std_dev([1, 2, 3], True), math.sqrt(2 / 3))
 
     def test_std_dev_invalid(self):
         self.assertIsNone(std_dev([], True))
 
     def test_covariance_population(self):
-        self.assertAlmostEqual(covariance([1, 2, 3], [1, 2, 3]), 2/3)
+        self.assertAlmostEqual(covariance([1, 2, 3], [1, 2, 3]), 2 / 3)
 
     def test_covariance_sample(self):
         self.assertAlmostEqual(covariance([1, 2, 3], [1, 2, 3], False), 1)

@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.graph_algos' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/graph_algos.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_bfs (tests.test_graphs.TestGraphBasics)</code></li>
     
-    <li>duration - 0.019 s</li>
+    <li>duration - 0.017 s</li>
     
     
     <li>tests run - 5</li>
@@ -47,7 +47,7 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_graphs.py", line 23, in test_bfs
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_graphs.py", line 19, in test_bfs
     self.assertEqual(order, ["A", "B", "C", "D"])
 AssertionError: Lists differ: ['A'] != ['A', 'B', 'C', 'D']
 
@@ -167,7 +167,7 @@ class Graph:
         return dist
     
     def topological_sort(self):
-        '''Performs topological sort on a DAG.'''
+        
         in_degree = {u: 0 for u in self.adj_list}
         for u in self.adj_list:
             for (v, weight) in self.adj_list[u]:
@@ -211,7 +211,6 @@ class UnionFind:
         return False
 
 def kruskal_mst(graph):
-    """Finds Minimum Spanning Tree using Kruskal's algorithm."""
     edges = []
     for u in graph.adj_list:
         for (v, weight) in graph.adj_list[u]:
@@ -227,7 +226,6 @@ def kruskal_mst(graph):
     return (mst, total_weight)
 
 def prim_mst(graph, start_node):
-    """Finds Minimum Spanning Tree using Prim's algorithm."""
     mst = []
     total_weight = 0
     visited = set([start_node])
@@ -246,7 +244,6 @@ def prim_mst(graph, start_node):
     return (mst, total_weight)
 
 def has_cycle(graph):
-    '''Detects if there is a cycle in an undirected graph.'''
     visited = set()
     
     def dfs(u, parent):
@@ -266,7 +263,6 @@ def has_cycle(graph):
     return False
 
 def find_connected_components(graph):
-    '''Finds all connected components in the graph.'''
     visited = set()
     components = []
     for node in graph.adj_list:

@@ -44,8 +44,6 @@ class SavingsAccount(Account):
     def apply_interest(self):
         interest = self.balance * self.interest_rate
         self.deposit(interest)
-        # deposit logs the transaction, but we might want a specific type
-        # For simplicity, we'll let deposit handle it or update the last transaction type
         if self.transactions:
             self.transactions[-1].type = "INTEREST"
 
@@ -78,18 +76,13 @@ class Bank:
         from_acc = self.accounts[from_id]
         to_acc = self.accounts[to_id]
 
-        # Integration logic: withdraw from one, deposit to another
         if from_acc.withdraw(amount):
             if to_acc.deposit(amount):
-                # Update transaction types for clarity
                 from_acc.transactions[-1].type = f"TRANSFER_OUT_TO_{to_id}"
                 to_acc.transactions[-1].type = f"TRANSFER_IN_FROM_{from_id}"
                 return True
             else:
-                # Rollback if deposit fails
                 from_acc.deposit(amount) 
-                # Remove the rollback deposit and failed withdrawal from history to keep it clean?
-                # Or keep them as failed attempts. Let's keep it simple.
                 return False
         return False
 

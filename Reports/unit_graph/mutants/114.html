@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number214').attr('title', 'SDL');
+        $('.line.number210').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.graph_algos' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/graph_algos.py'></code></li>
     <li><span class="label label-danger">survived</span></li>
     
-    <li>duration - 0.006 s</li>
+    <li>duration - 0.008 s</li>
     
     
     <li>tests run - 19</li>
@@ -48,11 +48,11 @@
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 214</li>
+    <li>SDL - line 210</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [214]; toolbar: false;">import heapq
+<pre class="brush: python; first-line: 1; highlight: [210]; toolbar: false;">import heapq
 
 class Graph:
     
@@ -153,7 +153,7 @@ class Graph:
         return dist
     
     def topological_sort(self):
-        '''Performs topological sort on a DAG.'''
+        
         in_degree = {u: 0 for u in self.adj_list}
         for u in self.adj_list:
             for (v, weight) in self.adj_list[u]:
@@ -197,7 +197,6 @@ class UnionFind:
         return False
 
 def kruskal_mst(graph):
-    """Finds Minimum Spanning Tree using Kruskal's algorithm."""
     edges = []
     for u in graph.adj_list:
         for (v, weight) in graph.adj_list[u]:
@@ -213,7 +212,6 @@ def kruskal_mst(graph):
     return (mst, total_weight)
 
 def prim_mst(graph, start_node):
-    """Finds Minimum Spanning Tree using Prim's algorithm."""
     mst = []
     total_weight = 0
     visited = set([start_node])
@@ -232,7 +230,6 @@ def prim_mst(graph, start_node):
     return (mst, total_weight)
 
 def has_cycle(graph):
-    '''Detects if there is a cycle in an undirected graph.'''
     visited = set()
     
     def dfs(u, parent):
@@ -252,7 +249,6 @@ def has_cycle(graph):
     return False
 
 def find_connected_components(graph):
-    '''Finds all connected components in the graph.'''
     visited = set()
     components = []
     for node in graph.adj_list:

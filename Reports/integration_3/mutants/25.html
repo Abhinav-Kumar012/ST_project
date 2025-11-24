@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number27').attr('title', 'SDL');
+        $('.line.number24').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.integration_3' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration_3.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_empty_graph (tests.test_integration_3.TestIntegration3)</code></li>
     
-    <li>duration - 0.019 s</li>
+    <li>duration - 0.015 s</li>
     
     
     <li>tests run - 1</li>
@@ -47,34 +47,32 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration_3.py", line 101, in test_empty_graph
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration_3.py", line 40, in test_empty_graph
     dist, is_prime, adj_sq = integration_3.graph_matrix_analysis(edges, 0, 2)
-  File "src.integration_3", line 81, in graph_matrix_analysis
+  File "src.integration_3", line 63, in graph_matrix_analysis
 UnboundLocalError: local variable 'shortest_path_dist' referenced before assignment
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 27</li>
+    <li>SDL - line 24</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [27]; toolbar: false;">from src import graph_algos, matrix_ops, set_ops, utils
+<pre class="brush: python; first-line: 1; highlight: [24]; toolbar: false;">from src import graph_algos, matrix_ops, set_ops, utils
+
 
 def graph_matrix_analysis(edges, start_node, end_node):
-    
     g = graph_algos.Graph()
     nodes = set()
     
     for (u, v, w) in edges:
-        
         if (w < 0 or w is None):
             to_number = lambda x: (0 if x is None else x)
             w = abs(to_number(w))
         else:
             w = w
-        
         
         g.add_edge(u, v, w)
         nodes.add(u)
@@ -82,63 +80,47 @@ def graph_matrix_analysis(edges, start_node, end_node):
     
     distances = g.dijkstra(start_node)
     
-    
     if end_node in distances:
         shortest_path_dist = distances[end_node]
     else:
         pass
     
-    
-    
     sorted_nodes = sorted(list(nodes))
     node_to_idx = {node: i for (i, node) in enumerate(sorted_nodes)}
     n = len(nodes)
-    
     
     if n == 0:
         adj_matrix = []
     else:
         adj_matrix = [[0] * n for _ in range(n)]
     
-    
     for (u, v, w) in edges:
         if (u in node_to_idx and v in node_to_idx):
-            
             if w == 0:
                 adj_matrix[node_to_idx[u]][node_to_idx[v]] = 0
             else:
                 adj_matrix[node_to_idx[u]][node_to_idx[v]] = w
-    
-    
-    
     
     if n <= 1:
         adj_sq = [[0]]
     else:
         adj_sq = matrix_ops.matrix_power(adj_matrix, 2)
     
-    
-    
     neighbors_start = [v for (v, w) in g.adj_list.get(start_node, [])]
     neighbors_end = [v for (v, w) in g.adj_list.get(end_node, [])]
-    
     
     if neighbors_start is None:
         neighbors_start = []
     if neighbors_end is None:
         neighbors_end = []
     
-    
     common_neighbors = set_ops.set_intersection(neighbors_start, neighbors_end)
     num_common = len(common_neighbors)
-    
-    
     
     if num_common < 0:
         is_prime = False
     else:
         is_prime = utils.is_prime(num_common)
-    
     
     return (shortest_path_dist, is_prime, adj_sq)</pre>
 

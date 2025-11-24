@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number79').attr('title', 'SDL');
+        $('.line.number77').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -38,29 +38,29 @@
     <li>module - <code><module 'src.banking' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/banking.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_transfer_deposit_fail_rollback (tests.test_banking.TestBank)</code></li>
     
-    <li>duration - 0.02 s</li>
+    <li>duration - 0.022 s</li>
     
     
-    <li>tests run - 10</li>
+    <li>tests run - 15</li>
     
 </ul>
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_banking.py", line 173, in test_transfer_deposit_fail_rollback
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_banking.py", line 178, in test_transfer_deposit_fail_rollback
     result = self.bank.transfer("A", "C", 20)
-  File "src.banking", line 83, in transfer
+  File "src.banking", line 80, in transfer
 NameError: name 'to_acc' is not defined
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 79</li>
+    <li>SDL - line 77</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [79]; toolbar: false;">import time
+<pre class="brush: python; first-line: 1; highlight: [77]; toolbar: false;">import time
 
 class Transaction:
     def __init__(self, type, amount):
@@ -106,8 +106,6 @@ class SavingsAccount(Account):
     def apply_interest(self):
         interest = self.balance * self.interest_rate
         self.deposit(interest)
-        
-        
         if self.transactions:
             self.transactions[-1].type = 'INTEREST'
 
@@ -140,18 +138,13 @@ class Bank:
         from_acc = self.accounts[from_id]
         pass
         
-        
         if from_acc.withdraw(amount):
             if to_acc.deposit(amount):
-                
                 from_acc.transactions[-1].type = f'TRANSFER_OUT_TO_{to_id}'
                 to_acc.transactions[-1].type = f'TRANSFER_IN_FROM_{from_id}'
                 return True
             else:
-                
                 from_acc.deposit(amount)
-                
-                
                 return False
         return False
     

@@ -1,6 +1,8 @@
 import unittest
-from src.banking import Account, Bank,Transaction, SavingsAccount, CheckingAccount
+from src.banking import Account, Bank, Transaction, SavingsAccount, CheckingAccount
 import time
+
+
 class TestAccount(unittest.TestCase):
     def setUp(self):
         self.acc = Account(100)
@@ -56,7 +58,7 @@ class TestBankIntegration(unittest.TestCase):
         self.assertFalse(result)
         self.assertEqual(self.acc1.get_balance(), 100)
 
-###  ---- -----
+
 class TestTransaction(unittest.TestCase):
     def test_transaction_creation(self):
         t = Transaction("DEPOSIT", 100)
@@ -68,7 +70,7 @@ class TestTransaction(unittest.TestCase):
         self.assertIn("100", repr_str)
 
 
-class TestAccount(unittest.TestCase):
+class TestAccountV2(unittest.TestCase):
     def setUp(self):
         self.acc = Account(50)
 
@@ -83,7 +85,7 @@ class TestAccount(unittest.TestCase):
 
     def test_deposit_negative(self):
         self.assertFalse(self.acc.deposit(-10))
-        self.assertEqual(self.acc.get_balance(), 50)  # unchanged
+        self.assertEqual(self.acc.get_balance(), 50)
 
     def test_withdraw_success(self):
         self.assertTrue(self.acc.withdraw(20))
@@ -110,7 +112,7 @@ class TestAccount(unittest.TestCase):
 class TestSavingsAccount(unittest.TestCase):
     def test_interest_application(self):
         sa = SavingsAccount(100, 0.05)
-        time.sleep(0.01)  # ensure timestamp changes for coverage
+        time.sleep(0.01)
         sa.apply_interest()
         self.assertAlmostEqual(sa.get_balance(), 105)
         self.assertEqual(sa.get_transaction_history()[-1].type, "INTEREST")
@@ -124,7 +126,7 @@ class TestCheckingAccount(unittest.TestCase):
 
     def test_overdraft_denied(self):
         ca = CheckingAccount(initial_balance=50, overdraft_limit=30)
-        self.assertFalse(ca.withdraw(90))  # beyond limit
+        self.assertFalse(ca.withdraw(90))
         self.assertEqual(ca.get_balance(), 50)
 
     def test_normal_withdrawal(self):
@@ -149,8 +151,12 @@ class TestBank(unittest.TestCase):
         self.assertTrue(result)
         self.assertEqual(self.bank.get_account("A").get_balance(), 60)
         self.assertEqual(self.bank.get_account("B").get_balance(), 90)
-        self.assertEqual(self.bank.get_account("A").transactions[-1].type, "TRANSFER_OUT_TO_B")
-        self.assertEqual(self.bank.get_account("B").transactions[-1].type, "TRANSFER_IN_FROM_A")
+        self.assertEqual(
+            self.bank.get_account("A").transactions[-1].type, "TRANSFER_OUT_TO_B"
+        )
+        self.assertEqual(
+            self.bank.get_account("B").transactions[-1].type, "TRANSFER_IN_FROM_A"
+        )
 
     def test_transfer_invalid_ids(self):
         self.assertFalse(self.bank.transfer("A", "X", 10))
@@ -163,7 +169,6 @@ class TestBank(unittest.TestCase):
         self.assertEqual(self.bank.get_account("B").get_balance(), 50)
 
     def test_transfer_deposit_fail_rollback(self):
-        # Create failing deposit scenario
         class FailDepositAccount(Account):
             def deposit(self, amount):
                 return False
@@ -173,7 +178,6 @@ class TestBank(unittest.TestCase):
         result = self.bank.transfer("A", "C", 20)
         self.assertFalse(result)
 
-        # Check rollback happened (balance unchanged)
         self.assertEqual(self.bank.get_account("A").get_balance(), 100)
 
     def test_total_deposits(self):

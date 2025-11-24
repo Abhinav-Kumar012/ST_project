@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.search_algos' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/search_algos.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_binary_search_recursive_not_found (tests.test_search_algos.TestSearchAlgorithms)</code></li>
     
-    <li>duration - 0.011 s</li>
+    <li>duration - 0.017 s</li>
     
     
     <li>tests run - 5</li>
@@ -47,8 +47,8 @@
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_search_algos.py", line 42, in test_binary_search_recursive_not_found
-    self.assertEqual(binary_search_recursive(arr, 2, 0, len(arr)-1), -1)
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_search_algos.py", line 33, in test_binary_search_recursive_not_found
+    self.assertEqual(binary_search_recursive(arr, 2, 0, len(arr) - 1), -1)
 AssertionError: None != -1
 </pre>
 
@@ -61,15 +61,15 @@ AssertionError: None != -1
 <h3>Mutant</h3>
 <pre class="brush: python; first-line: 1; highlight: [36]; toolbar: false;">import math
 
+
 def linear_search(arr, target):
-    '''Performs linear search.'''
     for i in range(len(arr)):
         if arr[i] == target:
             return i
     return -1
 
+
 def binary_search(arr, target):
-    '''Performs iterative binary search on a sorted array.'''
     low = 0
     high = len(arr) - 1
     
@@ -83,8 +83,8 @@ def binary_search(arr, target):
             high = mid - 1
     return -1
 
+
 def binary_search_recursive(arr, target, low, high):
-    '''Performs recursive binary search on a sorted array.'''
     if low > high:
         return -1
     
@@ -96,8 +96,8 @@ def binary_search_recursive(arr, target, low, high):
     else:
         pass
 
+
 def jump_search(arr, target):
-    '''Performs jump search on a sorted array.'''
     n = len(arr)
     step = math.sqrt(n)
     
@@ -118,8 +118,8 @@ def jump_search(arr, target):
     
     return -1
 
+
 def exponential_search(arr, target):
-    '''Performs exponential search on a sorted array.'''
     n = len(arr)
     if n == 0:
         return -1
@@ -133,8 +133,8 @@ def exponential_search(arr, target):
     
     return binary_search_recursive(arr, target, i // 2, min(i, n - 1))
 
+
 def interpolation_search(arr, target):
-    '''Performs interpolation search on a sorted array with uniformly distributed values.'''
     low = 0
     high = len(arr) - 1
     
@@ -144,7 +144,9 @@ def interpolation_search(arr, target):
                 return low
             return -1
         
-        pos = low + int((float(high - low) / (arr[high] - arr[low])) * (target - arr[low]))
+        pos = low + int(
+            (float(high - low) / (arr[high] - arr[low])) * (target - arr[low]))
+        
         
         if arr[pos] == target:
             return pos
