@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number43').attr('title', 'SDL');
+        $('.line.number24').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.integration_3' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration_3.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_empty_graph (tests.test_integration_3.TestIntegration3)</code></li>
     
-    <li>duration - 0.014 s</li>
+    <li>duration - 0.013 s</li>
     
     
     <li>tests run - 1</li>
@@ -50,17 +50,17 @@
   File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration_3.py", line 40, in test_empty_graph
     dist, is_prime, adj_sq = integration_3.graph_matrix_analysis(edges, 0, 2)
   File "src.integration_3", line 63, in graph_matrix_analysis
-UnboundLocalError: local variable 'adj_sq' referenced before assignment
+UnboundLocalError: local variable 'shortest_path_dist' referenced before assignment
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 43</li>
+    <li>SDL - line 24</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [43]; toolbar: false;">from src import graph_algos, matrix_ops, set_ops, utils
+<pre class="brush: python; first-line: 1; highlight: [24]; toolbar: false;">from src import graph_algos, matrix_ops, set_ops, utils
 
 
 def graph_matrix_analysis(edges, start_node, end_node):
@@ -83,7 +83,7 @@ def graph_matrix_analysis(edges, start_node, end_node):
     if end_node in distances:
         shortest_path_dist = distances[end_node]
     else:
-        shortest_path_dist = float('inf')
+        pass
     
     sorted_nodes = sorted(list(nodes))
     node_to_idx = {node: i for (i, node) in enumerate(sorted_nodes)}
@@ -102,7 +102,7 @@ def graph_matrix_analysis(edges, start_node, end_node):
                 adj_matrix[node_to_idx[u]][node_to_idx[v]] = w
     
     if n <= 1:
-        pass
+        adj_sq = [[0]]
     else:
         adj_sq = matrix_ops.matrix_power(adj_matrix, 2)
     

@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number20').attr('title', 'SDL');
+        $('.line.number7').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.integration_2' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration_2.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_text_processing_pipeline (tests.test_integration_2.TestIntegration2)</code></li>
     
-    <li>duration - 0.027 s</li>
+    <li>duration - 0.017 s</li>
     
     
     <li>tests run - 1</li>
@@ -49,24 +49,24 @@
 <pre>Traceback (most recent call last):
   File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration_2.py", line 9, in test_text_processing_pipeline
     index, mean_len = integration_2.text_processing_pipeline(words, "Madam")
-  File "src.integration_2", line 22, in text_processing_pipeline
-NameError: name 'is_pal' is not defined
+  File "src.integration_2", line 9, in text_processing_pipeline
+UnboundLocalError: local variable 'sc' referenced before assignment
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 20</li>
+    <li>SDL - line 7</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [20]; toolbar: false;">from src import string_utils, sorting_algos, search_algos, stats_lib
+<pre class="brush: python; first-line: 1; highlight: [7]; toolbar: false;">from src import string_utils, sorting_algos, search_algos, stats_lib
 
 
 def text_processing_pipeline(words, target_word):
     snake_case_words = []
     for w in words:
-        sc = string_utils.to_snake_case(w)
+        pass
         
         if sc is None:
             sc = ''
@@ -79,7 +79,7 @@ def text_processing_pipeline(words, target_word):
     
     palindromes = []
     for w in snake_case_words:
-        pass
+        is_pal = string_utils.is_palindrome(w)
         
         if (is_pal and len(w) > 0):
             palindromes.append(w)

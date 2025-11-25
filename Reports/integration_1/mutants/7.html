@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number10').attr('title', 'SDL');
+        $('.line.number6').attr('title', 'ROR');
         
     }, 0);
 </script>
@@ -36,40 +36,39 @@
 <h3>Details</h3>
 <ul>
     <li>module - <code><module 'src.integration' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration.py'></code></li>
-    <li><span class="label label-success">killed</span> by <code>test_v3 (tests.test_integration.TestIntegrationScenarios)</code></li>
+    <li><span class="label label-success">killed</span> by <code>test_v2 (tests.test_integration.TestIntegrationScenarios)</code></li>
     
     <li>duration - 0.025 s</li>
     
     
-    <li>tests run - 3</li>
+    <li>tests run - 2</li>
     
 </ul>
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration.py", line 18, in test_v3
-    mean_amount, std_dev = integration.test_complex_financial_geometry_scenario(
-  File "src.integration", line 16, in test_complex_financial_geometry_scenario
-UnboundLocalError: local variable 'width' referenced before assignment
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration.py", line 15, in test_v2
+    self.assertIsNone(t)
+AssertionError: (0.6000000000000001, None) is not None
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 10</li>
+    <li>ROR - line 6</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [10]; toolbar: false;">from src import utils, geometry, banking, stats_lib
+<pre class="brush: python; first-line: 1; highlight: [6]; toolbar: false;">from src import utils, geometry, banking, stats_lib
 
 
 def test_complex_financial_geometry_scenario(a, b, c, i):
     roots = utils.solve_quadratic(a, b, c)
-    if (roots[0] < 0 and roots[1] < 0):
+    if (roots[0] < 0 and roots[1] > 0):
         return None
     
     if (roots[0] < roots[1] or roots[1] == 0):
-        pass
+        width = roots[1]
         height = roots[0]
     else:
         width = roots[0]

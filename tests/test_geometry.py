@@ -95,11 +95,9 @@ class TestGeometryFunctions(unittest.TestCase):
         self.assertTrue(math.isinf(slope(p1, p3)))
 
     def test_polygon_area(self):
-        # Square (0,0), (2,0), (2,2), (0,2)
         pts = [Point2D(0, 0), Point2D(2, 0), Point2D(2, 2), Point2D(0, 2)]
         self.assertEqual(polygon_area(pts), 4)
 
-        # Not enough points
         self.assertEqual(polygon_area([Point2D(0, 0)]), 0)
 
 

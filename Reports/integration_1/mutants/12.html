@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number17').attr('title', 'SDL');
+        $('.line.number5').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.integration' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_complex_financial_geometry_scenario (tests.test_integration.TestIntegrationScenarios)</code></li>
     
-    <li>duration - 0.023 s</li>
+    <li>duration - 0.02 s</li>
     
     
     <li>tests run - 1</li>
@@ -49,22 +49,22 @@
 <pre>Traceback (most recent call last):
   File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration.py", line 7, in test_complex_financial_geometry_scenario
     mean_amount, std_dev = integration.test_complex_financial_geometry_scenario(
-  File "src.integration", line 19, in test_complex_financial_geometry_scenario
-NameError: name 'area' is not defined
+  File "src.integration", line 6, in test_complex_financial_geometry_scenario
+NameError: name 'roots' is not defined
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 17</li>
+    <li>SDL - line 5</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [17]; toolbar: false;">from src import utils, geometry, banking, stats_lib
+<pre class="brush: python; first-line: 1; highlight: [5]; toolbar: false;">from src import utils, geometry, banking, stats_lib
 
 
 def test_complex_financial_geometry_scenario(a, b, c, i):
-    roots = utils.solve_quadratic(a, b, c)
+    pass
     if (roots[0] < 0 and roots[1] < 0):
         return None
     
@@ -76,7 +76,7 @@ def test_complex_financial_geometry_scenario(a, b, c, i):
         height = roots[1]
     
     rect = geometry.Rectangle(geometry.Point2D(0, height), width, height)
-    pass
+    area = rect.area()
     
     account = banking.SavingsAccount(initial_balance=area, interest_rate=i)
     

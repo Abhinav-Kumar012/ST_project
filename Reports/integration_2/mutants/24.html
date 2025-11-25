@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number40').attr('title', 'SDL');
+        $('.line.number26').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -36,31 +36,30 @@
 <h3>Details</h3>
 <ul>
     <li>module - <code><module 'src.integration_2' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration_2.py'></code></li>
-    <li><span class="label label-success">killed</span> by <code>test_text_processing_pipeline (tests.test_integration_2.TestIntegration2)</code></li>
+    <li><span class="label label-success">killed</span> by <code>test_v5 (tests.test_integration_2.TestIntegration2)</code></li>
     
-    <li>duration - 0.016 s</li>
+    <li>duration - 0.018 s</li>
     
     
-    <li>tests run - 1</li>
+    <li>tests run - 5</li>
     
 </ul>
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration_2.py", line 9, in test_text_processing_pipeline
-    index, mean_len = integration_2.text_processing_pipeline(words, "Madam")
-  File "src.integration_2", line 42, in text_processing_pipeline
-NameError: name 'lengths' is not defined
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration_2.py", line 40, in test_v5
+    self.assertEqual(mean_len, 1.0)
+AssertionError: 3.0 != 1.0
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 40</li>
+    <li>SDL - line 26</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [40]; toolbar: false;">from src import string_utils, sorting_algos, search_algos, stats_lib
+<pre class="brush: python; first-line: 1; highlight: [26]; toolbar: false;">from src import string_utils, sorting_algos, search_algos, stats_lib
 
 
 def text_processing_pipeline(words, target_word):
@@ -85,7 +84,7 @@ def text_processing_pipeline(words, target_word):
             palindromes.append(w)
         
         elif is_pal:
-            palindromes.append(w)
+            pass
     
     if len(palindromes) == 0:
         sorted_palindromes = []
@@ -99,7 +98,7 @@ def text_processing_pipeline(words, target_word):
     else:
         index = search_algos.binary_search(sorted_palindromes, target_snake)
     
-    pass
+    lengths = [len(w) for w in sorted_palindromes]
     
     if len(lengths) == 0:
         mean_length = 0.0

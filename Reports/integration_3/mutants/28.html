@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number28').attr('title', 'SDL');
+        $('.line.number15').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -36,31 +36,30 @@
 <h3>Details</h3>
 <ul>
     <li>module - <code><module 'src.integration_3' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration_3.py'></code></li>
-    <li><span class="label label-success">killed</span> by <code>test_empty_graph (tests.test_integration_3.TestIntegration3)</code></li>
+    <li><span class="label label-success">killed</span> by <code>test_graph_matrix_analysis (tests.test_integration_3.TestIntegration3)</code></li>
     
-    <li>duration - 0.014 s</li>
+    <li>duration - 0.026 s</li>
     
     
-    <li>tests run - 1</li>
+    <li>tests run - 2</li>
     
 </ul>
 
 <h3>Exception traceback</h3>
 <pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration_3.py", line 40, in test_empty_graph
-    dist, is_prime, adj_sq = integration_3.graph_matrix_analysis(edges, 0, 2)
-  File "src.integration_3", line 30, in graph_matrix_analysis
-NameError: name 'n' is not defined
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration_3.py", line 11, in test_graph_matrix_analysis
+    self.assertEqual(dist, 2)
+AssertionError: inf != 2
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 28</li>
+    <li>SDL - line 15</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [28]; toolbar: false;">from src import graph_algos, matrix_ops, set_ops, utils
+<pre class="brush: python; first-line: 1; highlight: [15]; toolbar: false;">from src import graph_algos, matrix_ops, set_ops, utils
 
 
 def graph_matrix_analysis(edges, start_node, end_node):
@@ -74,7 +73,7 @@ def graph_matrix_analysis(edges, start_node, end_node):
         else:
             w = w
         
-        g.add_edge(u, v, w)
+        pass
         nodes.add(u)
         nodes.add(v)
     
@@ -87,7 +86,7 @@ def graph_matrix_analysis(edges, start_node, end_node):
     
     sorted_nodes = sorted(list(nodes))
     node_to_idx = {node: i for (i, node) in enumerate(sorted_nodes)}
-    pass
+    n = len(nodes)
     
     if n == 0:
         adj_matrix = []

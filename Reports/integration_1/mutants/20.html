@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number32').attr('title', 'SDL');
+        $('.line.number19').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -36,21 +36,31 @@
 <h3>Details</h3>
 <ul>
     <li>module - <code><module 'src.integration' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration.py'></code></li>
-    <li><span class="label label-info">timeout</span></li>
+    <li><span class="label label-success">killed</span> by <code>test_complex_financial_geometry_scenario (tests.test_integration.TestIntegrationScenarios)</code></li>
     
-    <li>duration - 5.007 s</li>
+    <li>duration - 0.019 s</li>
     
+    
+    <li>tests run - 1</li>
     
 </ul>
+
+<h3>Exception traceback</h3>
+<pre>Traceback (most recent call last):
+  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration.py", line 7, in test_complex_financial_geometry_scenario
+    mean_amount, std_dev = integration.test_complex_financial_geometry_scenario(
+  File "src.integration", line 21, in test_complex_financial_geometry_scenario
+NameError: name 'account' is not defined
+</pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 32</li>
+    <li>SDL - line 19</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [32]; toolbar: false;">from src import utils, geometry, banking, stats_lib
+<pre class="brush: python; first-line: 1; highlight: [19]; toolbar: false;">from src import utils, geometry, banking, stats_lib
 
 
 def test_complex_financial_geometry_scenario(a, b, c, i):
@@ -68,7 +78,7 @@ def test_complex_financial_geometry_scenario(a, b, c, i):
     rect = geometry.Rectangle(geometry.Point2D(0, height), width, height)
     area = rect.area()
     
-    account = banking.SavingsAccount(initial_balance=area, interest_rate=i)
+    pass
     
     account.apply_interest()
     
@@ -81,7 +91,7 @@ def test_complex_financial_geometry_scenario(a, b, c, i):
     mean_amount = stats_lib.mean(amounts)
     
     std_dev = stats_lib.std_dev(amounts, population=True)
-    pass</pre>
+    return (mean_amount, std_dev)</pre>
 
     </div>
 </body>

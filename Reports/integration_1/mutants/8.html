@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number11').attr('title', 'SDL');
+        $('.line.number6').attr('title', 'ROR');
         
     }, 0);
 </script>
@@ -36,41 +36,33 @@
 <h3>Details</h3>
 <ul>
     <li>module - <code><module 'src.integration' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration.py'></code></li>
-    <li><span class="label label-success">killed</span> by <code>test_v3 (tests.test_integration.TestIntegrationScenarios)</code></li>
+    <li><span class="label label-danger">survived</span></li>
     
-    <li>duration - 0.022 s</li>
+    <li>duration - 0.006 s</li>
     
     
-    <li>tests run - 3</li>
+    <li>tests run - 4</li>
     
 </ul>
-
-<h3>Exception traceback</h3>
-<pre>Traceback (most recent call last):
-  File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration.py", line 18, in test_v3
-    mean_amount, std_dev = integration.test_complex_financial_geometry_scenario(
-  File "src.integration", line 16, in test_complex_financial_geometry_scenario
-UnboundLocalError: local variable 'height' referenced before assignment
-</pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 11</li>
+    <li>ROR - line 6</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [11]; toolbar: false;">from src import utils, geometry, banking, stats_lib
+<pre class="brush: python; first-line: 1; highlight: [6]; toolbar: false;">from src import utils, geometry, banking, stats_lib
 
 
 def test_complex_financial_geometry_scenario(a, b, c, i):
     roots = utils.solve_quadratic(a, b, c)
-    if (roots[0] < 0 and roots[1] < 0):
+    if (roots[0] < 0 and roots[1] <= 0):
         return None
     
     if (roots[0] < roots[1] or roots[1] == 0):
         width = roots[1]
-        pass
+        height = roots[0]
     else:
         width = roots[0]
         height = roots[1]

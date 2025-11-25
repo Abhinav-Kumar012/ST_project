@@ -14,6 +14,6 @@ mut.py --target src.string_utils --unit-test tests.test_string_utils --operator 
 mut.py --target src.utils --unit-test tests.test_utils_2 --operator SDL LCR COD --path . --report-html Reports/unit_utils
 
 # integration tests mutation commands
-mut.py --target src.integration --unit-test tests.test_integration --operator SDL LCR COI --path . --report-html Reports/integration_1
-mut.py --target src.integration_2 --unit-test tests.test_integration_2 --operator SDL LCR COI --path . --report-html Reports/integration_2
-mut.py --target src.integration_3 --unit-test tests.test_integration_3 --operator SDL LCR COI --path . --report-html Reports/integration_3
+mut.py --target src.integration --unit-test tests.test_integration --operator SDL LCR COI ROR --path . --report-html Reports/integration_1
+mut.py --target src.integration_2 --unit-test tests.test_integration_2 --operator SDL LCR COI ROR --path . --report-html Reports/integration_2
+mut.py --target src.integration_3 --unit-test tests.test_integration_3 --operator SDL LCR COI ROR --path . --report-html Reports/integration_3

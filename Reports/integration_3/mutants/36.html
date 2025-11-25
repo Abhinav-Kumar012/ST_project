@@ -21,7 +21,7 @@
     SyntaxHighlighter.all();
     window.setTimeout(function () {
         
-        $('.line.number48').attr('title', 'SDL');
+        $('.line.number28').attr('title', 'SDL');
         
     }, 0);
 </script>
@@ -38,7 +38,7 @@
     <li>module - <code><module 'src.integration_3' from '/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./src/integration_3.py'></code></li>
     <li><span class="label label-success">killed</span> by <code>test_empty_graph (tests.test_integration_3.TestIntegration3)</code></li>
     
-    <li>duration - 0.016 s</li>
+    <li>duration - 0.017 s</li>
     
     
     <li>tests run - 1</li>
@@ -49,18 +49,18 @@
 <pre>Traceback (most recent call last):
   File "/mnt/c/Users/Gaming window/Desktop/ST_projects/ST_project/./tests/test_integration_3.py", line 40, in test_empty_graph
     dist, is_prime, adj_sq = integration_3.graph_matrix_analysis(edges, 0, 2)
-  File "src.integration_3", line 52, in graph_matrix_analysis
-UnboundLocalError: local variable 'neighbors_end' referenced before assignment
+  File "src.integration_3", line 30, in graph_matrix_analysis
+NameError: name 'n' is not defined
 </pre>
 
 <h3>Mutations</h3>
 <ul>
     
-    <li>SDL - line 48</li>
+    <li>SDL - line 28</li>
     
 </ul>
 <h3>Mutant</h3>
-<pre class="brush: python; first-line: 1; highlight: [48]; toolbar: false;">from src import graph_algos, matrix_ops, set_ops, utils
+<pre class="brush: python; first-line: 1; highlight: [28]; toolbar: false;">from src import graph_algos, matrix_ops, set_ops, utils
 
 
 def graph_matrix_analysis(edges, start_node, end_node):
@@ -87,7 +87,7 @@ def graph_matrix_analysis(edges, start_node, end_node):
     
     sorted_nodes = sorted(list(nodes))
     node_to_idx = {node: i for (i, node) in enumerate(sorted_nodes)}
-    n = len(nodes)
+    pass
     
     if n == 0:
         adj_matrix = []
@@ -107,7 +107,7 @@ def graph_matrix_analysis(edges, start_node, end_node):
         adj_sq = matrix_ops.matrix_power(adj_matrix, 2)
     
     neighbors_start = [v for (v, w) in g.adj_list.get(start_node, [])]
-    pass
+    neighbors_end = [v for (v, w) in g.adj_list.get(end_node, [])]
     
     if neighbors_start is None:
         neighbors_start = []
