@@ -130,6 +130,18 @@ The codebase implements multiple complete functionalities spread across modules 
 | src | 15 | 1388 |
 | tests | 15 | 1095 |
 
+$$
+\text{Mutation Score} =
+\frac{\text{Killed Mutants} + \text{Timeout Mutants}}
+     {\text{Total Mutants}}
+\times 100\%
+$$
+$$
+\text{Mutation Score} =
+\frac{M_k + M_{\text{to}}}{M_t} \times 100\%
+$$
+
+
 ## Repository Link
 
 A full version of the project and test suite is available at:
@@ -181,7 +193,13 @@ We implemented a mutation-based test strategy for **unit testing** and **integra
 2.  **Logical Connector Replacement (LCR):** Replaces logical connectors (e.g., `and` with `or`).
 3.  **Relational Operator Replacement  (ROR):**  Replaces relational operators (e.g., `==` with `!=`).
 4. **Conditional Operator Insertion (COI):** Adds Not statements to invert consitional statements.
-
+ ---
+## Results
+|name|killed|timeout|survived|total|percentage|
+|----|----|----|----|----|----|
+|integration|86|6|19|111|82.88|
+|unit|746|130|62|938|93.39|
+|total|832|136|81|1049|92.28|
 
 ## Tooling: `mut.py`
 We are using `mut.py` for performing mutation testing. The `commands.sh` script demonstrates its usage.
@@ -219,3 +237,8 @@ bash commands.sh
 |-------------|----------------------|
 | Abhinav Kumar | unit testing for banking, data_structures, graph_algos, matrix_ops,search_algos, utils, geometry,set_ops |
 | Aaditya Joshi | integration testing and unit testing for sorting_algos, stats_lib, string_utils |
+
+## AI Disclosure
+AI was used in this project to implement the following:
+- Ensure we had node coverage in unit testing.
+- Added conditional statements in integration testing for increasing logical mutant count.
