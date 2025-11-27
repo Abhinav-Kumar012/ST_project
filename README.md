@@ -178,8 +178,14 @@ The integration modules are used specifically for **integration-level mutation t
 
 We implemented a mutation-based test strategy for **unit testing** and **integration testing**, satisfying the project requirement of using mutation operators at both levels with strong mutant killing .For **unit testing**, we have tried using node coverage (99%).
 
-### **Code coverage**
-[code coverage report](./htmlcov/index.html) 
+### Code coverage
+
+```bash
+coverage run --source=src -m unittest discover # node coverage
+coverage run --branch --source=src -m unittest discover # branch coverage
+coverage report -m
+coverage html # html report for coverage
+```
 
 ### **Unit-Level Mutation Operators Used**
 

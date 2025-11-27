@@ -4,4 +4,4 @@
 **/*.bak
 .VSCodeCounter/
 **/.DS_Store
-.coverge
+.coverage
